@@ -1,0 +1,53 @@
+<nb-layout>
+    <nb-layout-column></nb-layout-column>
+    <nb-layout-column>
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center mb-3">
+                    <img src="../../../assets/teste.png" alt="..." height="200px" width="200px">
+                </div>
+                <nb-card accent="primary" size="medium">
+                    <nb-card-body>
+                        <h3 class="text-center titulo">Login</h3>
+                        <div class="row">
+                            <div class="col p-3 mt-5">
+                                <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
+                                        <input type="text" nbInput fullWidth shape="semi-round" placeholder="Usuário"
+                                            formControlName="user">
+                                    </nb-form-field>
+                                    <br>
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="lock" pack="eva"></nb-icon>
+                                        <input type="password" nbInput fullWidth shape="semi-round" placeholder="Senha"
+                                            formControlName="password">
+                                    </nb-form-field>
+                                    <div class="row">
+                                        <div class="col-12 mt-3 text-center">
+                                            <nb-alert status="danger" closable (close)="onClose()" *ngIf="alert">Usuário ou Senha incorretos</nb-alert>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <button nbButton fullWidth hero status="success" type="submit">Entrar<nb-icon nbPrefix
+                                                    icon="arrow-right" pack="eva"></nb-icon></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <button nbButton fullWidth hero status="info" [routerLink]="'/cadastro'">Cadastrar<nb-icon nbPrefix icon="edit-2"
+                                        pack="eva"></nb-icon></button>
+                            </div>
+                        </div>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+        </div>
+    </nb-layout-column>
+    <nb-layout-column>
+    </nb-layout-column>
+</nb-layout>

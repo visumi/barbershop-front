@@ -1,0 +1,36 @@
+<nb-layout>
+    <nb-layout-column class="container">
+        <nb-card accent="primary" size="medium">
+            <nb-card-body>
+                <h5 class="text-center titulo">Cadastro</h5>
+                <div class="row">
+                    <div class="col p-3 mt-5">
+                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
+                                <input type="text" nbInput fullWidth shape="semi-round" placeholder="Usuário"
+                                    formControlName="user">
+                            </nb-form-field>
+                            <br>
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="lock" pack="eva"></nb-icon>
+                                <input type="password" nbInput fullWidth shape="semi-round" placeholder="Senha"
+                                    formControlName="password">
+                            </nb-form-field>
+                            <br>
+                            <nb-select placeholder="Cargo" fullWidth formControlName="role">
+                                <nb-option value="1">Admin</nb-option>
+                                <nb-option value="2">Funcionário</nb-option>
+                            </nb-select>
+                            <div class="row mt-5">
+                                <div class="col text-center">
+                                    <button nbButton fullWidth hero status="success" type="submit">Cadastrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>

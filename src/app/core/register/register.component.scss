@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    nb-card {
+        min-width: 512px;
+    }
+
+    .titulo {
+        font-family: 'Roboto', sans-serif;
+    }
+}
