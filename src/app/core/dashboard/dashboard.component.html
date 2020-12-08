@@ -10,7 +10,7 @@
                     <nb-card-body>
                         <div class="row align-items-center">
                             <div class="col-12">
-                                <form [formGroup]="newBooking" (ngSubmit)="onSubmit(newBooking.value)">
+                                <form [formGroup]="newBooking" (ngSubmit)="onSubmitBook(newBooking.value)">
                                     <nb-form-field>
                                         <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
                                         <input type="text" nbInput fullWidth shape="semi-round"
@@ -41,13 +41,13 @@
                         <h5 class="text-center titulo">Reservas</h5>
                     </nb-card-header>
                     <nb-card-body class="p-0 m-0 card-reserva">
-                        <div class="row reserva" *ngFor="let book of bookings">
+                        <div class="row reserva" *ngFor="let book of bookings" (click)="checkBook(book)">
                             <div class="col-9">
                                 <h6 class="text-capitalize pt-2 pl-3">{{ book.client }}</h6>
                                 <p class="pl-3">{{book.date}}</p>
                             </div>
                             <div class="col-3 my-auto">
-                                <h4 class="pr-3">{{book.horario}}</h4>
+                                <h4 class="pr-3">{{book.time}}</h4>
                             </div>
                         </div>
                     </nb-card-body>
@@ -56,9 +56,32 @@
             <div class="col-6">
                 <nb-card class="h-100" accent="success">
                     <nb-card-header>
-                        <h5 class="text-center titulo">Reserva de Tinga</h5>
+                        <h5 class="text-center text-capitalize titulo">Reserva de {{selectedBook.client}}</h5>
                     </nb-card-header>
                     <nb-card-body>
+                        <div class="row">
+                            <div class="col-9">
+                                <h4 class="pl-1">Data</h4>
+                                <p>{{selectedBook.date}}</p>
+                            </div>
+                            <div class="col-3">
+                                <h4 class="text-right pr-3">Horário</h4>
+                                <p class="text-right pr-5">{{selectedBook.time}}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-12 text-center">
+                                <div class="cart">
+                                    <nb-icon nbPrefix icon="shopping-cart" pack="eva"></nb-icon>
+                                    <h5 class="m-0">Carrinho</h5>
+                                </div>
+                                <nb-card class="cart-card rounded-0">
+                                    <nb-card-body>
+                                    </nb-card-body>
+                                </nb-card>
+                            </div>
+                        </div>
+                        <button nbButton fullWidth hero status="success">Finalizar</button>
                     </nb-card-body>
                 </nb-card>
             </div>
