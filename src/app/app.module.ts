@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule,
-NbButtonModule, NbAlertModule, NbSelectModule, NbSidebarModule, NbCalendarModule} from '@nebular/theme';
+NbButtonModule, NbAlertModule, NbSelectModule, NbSidebarModule, NbCalendarModule, NbListModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HeaderComponent } from './core/header/header.component';
 import { LoginComponent } from './core/login/login.component';
@@ -39,6 +39,7 @@ import { RegisterComponent } from './core/register/register.component';
     NbSelectModule,
     NbCalendarModule,
     ReactiveFormsModule,
+    NbListModule,
     NbButtonModule,
     NbInputModule,
     NbEvaIconsModule

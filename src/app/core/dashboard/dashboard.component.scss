@@ -2,6 +2,18 @@
     background-color: #5b658c;
 }
 
+.card-reserva {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 645px;
+    margin-bottom: 0;
+}
+
 .titulo {
     font-family: 'Roboto', sans-serif;
+}
+
+.reserva:hover {
+    background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
 }

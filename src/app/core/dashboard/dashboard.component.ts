@@ -13,6 +13,99 @@ export class DashboardComponent implements OnInit {
   newBooking: FormGroup;
   date = new Date();
   today = new Date();
+  bookings = [
+    {
+      date: '12/2/2020',
+      client: 'tinga',
+      horario: '13:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tiringa',
+      horario: '14:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tirinsga',
+      horario: '15:00'
+    },
+    {
+      date: '12/2/2020',
+      client: 'tinga',
+      horario: '13:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tiringa',
+      horario: '14:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tirinsga',
+      horario: '15:00'
+    },
+    {
+      date: '12/2/2020',
+      client: 'tinga',
+      horario: '13:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tiringa',
+      horario: '14:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tirinsga',
+      horario: '15:00'
+    },
+    {
+      date: '12/2/2020',
+      client: 'tinga',
+      horario: '13:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tiringa',
+      horario: '14:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tirinsga',
+      horario: '15:00'
+    },
+    {
+      date: '12/2/2020',
+      client: 'tinga',
+      horario: '13:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tiringa',
+      horario: '14:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tirinsga',
+      horario: '15:00'
+    },
+    {
+      date: '12/2/2020',
+      client: 'tinga',
+      horario: '13:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tiringa',
+      horario: '14:00'
+    },
+    {
+      date: '13/3/2020',
+      client: 'tirinsga',
+      horario: '15:00'
+    },
+    
+  ];
 
   constructor(
     private formBuilder: FormBuilder
