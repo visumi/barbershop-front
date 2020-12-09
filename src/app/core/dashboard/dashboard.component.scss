@@ -31,3 +31,20 @@
     background-color: #0e1424;
     cursor: pointer;
 }
+
+.minus {
+    cursor: pointer;
+}
+
+
+.cart-body {
+    overflow: hidden;
+}
+
+.item-cart {
+    background-color: #31384d;
+}
+
+.item-cart:hover {
+    background-color: rgba(0,0,0,0.3);
+}

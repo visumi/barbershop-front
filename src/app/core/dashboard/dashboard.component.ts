@@ -43,20 +43,20 @@ export class DashboardComponent implements OnInit {
   cart = [
     {
       id: '1',
-      nome: 'pomada',
+      nome: 'Pomada para cabelo',
       qty: 1
     },
     {
       id: '2',
-      nome: 'cabelo',
+      nome: 'Corte de Cabelo',
       qty: 2
     },
     {
       id: '3',
-      nome: 'barba',
+      nome: 'Corte de Barba',
       qty: 3
     }
-  ]
+  ];
 
   constructor(
     private formBuilder: FormBuilder
@@ -90,16 +90,21 @@ export class DashboardComponent implements OnInit {
     this.selectedBook = book;
   }
 
-  teste() {
+  teste(): void {
     const item = {
       id: '3',
       nome: 'teste',
       qty: 1
+    };
+    const itemFound = this.cart.find(cartitem => cartitem.id === item.id);
+    if (itemFound) {
+      itemFound.qty++;
+    } else {
+      this.cart.push(item);
     }
-    this.cart.forEach((cartItem)=>{
-      if(item.id === cartItem.id) {
-        cartItem.qty++;
-      }
-    })
+  }
+
+  removeItem(): void {
+    console.log('remove');
   }
 }

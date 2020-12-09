@@ -76,11 +76,12 @@
                                     <div class="ml-auto p-2 plus"><a (click)="teste()"><nb-icon nbPrefix icon="plus-circle" pack="eva"></nb-icon></a></div>
                                 </div>
                                 <nb-card class="cart-card rounded-0">
-                                    <nb-card-body>
+                                    <nb-card-body class="p-0 cart-body">
                                         <div class="row" *ngFor="let item of cart">
-                                            <div class="col-12">
-                                                <h6>{{ item.nome }}</h6>
-                                                <h6>{{ item.qty }}</h6>
+                                            <div class="col-12 d-flex justify-content-between item-cart">
+                                                <a class="my-auto ml-2 minus" (click)="removeItem()"><nb-icon nbPrefix icon="minus-circle" pack="eva"></nb-icon></a>
+                                                <h6 class="p-2 titulo">{{item.nome}}</h6>
+                                                <p class="p-2 mr-2 font-weight-bold">{{item.qty}}</p>
                                             </div>
                                         </div>
                                     </nb-card-body>
