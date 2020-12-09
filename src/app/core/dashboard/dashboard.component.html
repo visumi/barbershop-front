@@ -56,7 +56,7 @@
             <div class="col-6">
                 <nb-card class="h-100" accent="success">
                     <nb-card-header>
-                        <h5 class="text-center text-capitalize titulo">Reserva de {{selectedBook.client}}</h5>
+                        <h5 class="text-center titulo">Reserva de {{selectedBook.client | uppercase }}</h5>
                     </nb-card-header>
                     <nb-card-body>
                         <div class="row">
@@ -71,12 +71,18 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-12 text-center">
-                                <div class="cart">
-                                    <nb-icon nbPrefix icon="shopping-cart" pack="eva"></nb-icon>
-                                    <h5 class="m-0">Carrinho</h5>
+                                <div class="cart d-flex justify-content-center align-items-center">
+                                    <h5 class="m-0 ml-auto">Carrinho</h5><nb-icon nbPrefix icon="shopping-cart" pack="eva"></nb-icon>
+                                    <div class="ml-auto p-2 plus"><a (click)="teste()"><nb-icon nbPrefix icon="plus-circle" pack="eva"></nb-icon></a></div>
                                 </div>
                                 <nb-card class="cart-card rounded-0">
                                     <nb-card-body>
+                                        <div class="row" *ngFor="let item of cart">
+                                            <div class="col-12">
+                                                <h6>{{ item.nome }}</h6>
+                                                <h6>{{ item.qty }}</h6>
+                                            </div>
+                                        </div>
                                     </nb-card-body>
                                 </nb-card>
                             </div>

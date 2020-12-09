@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
     client: 'Ninguém',
     time: '00:00'
   };
+
   bookings = [
     {
       date: '12/2/2020',
@@ -38,6 +39,24 @@ export class DashboardComponent implements OnInit {
       time: '15:00'
     }
   ];
+
+  cart = [
+    {
+      id: '1',
+      nome: 'pomada',
+      qty: 1
+    },
+    {
+      id: '2',
+      nome: 'cabelo',
+      qty: 2
+    },
+    {
+      id: '3',
+      nome: 'barba',
+      qty: 3
+    }
+  ]
 
   constructor(
     private formBuilder: FormBuilder
@@ -69,5 +88,18 @@ export class DashboardComponent implements OnInit {
 
   checkBook(book): void {
     this.selectedBook = book;
+  }
+
+  teste() {
+    const item = {
+      id: '3',
+      nome: 'teste',
+      qty: 1
+    }
+    this.cart.forEach((cartItem)=>{
+      if(item.id === cartItem.id) {
+        cartItem.qty++;
+      }
+    })
   }
 }
