@@ -79,7 +79,7 @@
                                     <nb-card-body class="p-0 cart-body">
                                         <div class="row" *ngFor="let item of cart">
                                             <div class="col-12 d-flex justify-content-between item-cart">
-                                                <a class="my-auto ml-2 minus" (click)="removeItem()"><nb-icon nbPrefix icon="minus-circle" pack="eva"></nb-icon></a>
+                                                <a class="my-auto ml-2 minus" (click)="removeItem(item)"><nb-icon nbPrefix icon="minus-circle" pack="eva"></nb-icon></a>
                                                 <h6 class="p-2 titulo">{{item.nome}}</h6>
                                                 <p class="p-2 mr-2 font-weight-bold">{{item.qty}}</p>
                                             </div>
@@ -88,7 +88,14 @@
                                 </nb-card>
                             </div>
                         </div>
-                        <button nbButton fullWidth hero status="success">Finalizar</button>
+                        <div class="row">
+                            <div class="col-6">
+                                <button nbButton fullWidth hero status="danger" [disabled]="clearButton" (click)="clearCart()">Limpar</button>
+                            </div>
+                            <div class="col-6">
+                                <button nbButton fullWidth hero status="success">Finalizar</button>
+                            </div>
+                        </div>
                     </nb-card-body>
                 </nb-card>
             </div>

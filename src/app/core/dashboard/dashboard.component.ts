@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class DashboardComponent implements OnInit {
 
   dateButton = true;
+  clearButton = true;
   newBooking: FormGroup;
   date = new Date();
   today = new Date();
@@ -25,17 +26,17 @@ export class DashboardComponent implements OnInit {
   bookings = [
     {
       date: '12/2/2020',
-      client: 'tinga',
+      client: 'Testificate1',
       time: '13:00'
     },
     {
       date: '13/3/2020',
-      client: 'tiringa',
+      client: 'Testificate2',
       time: '14:00'
     },
     {
       date: '13/3/2020',
-      client: 'tirinsga',
+      client: 'Testificate3',
       time: '15:00'
     }
   ];
@@ -70,7 +71,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  handleDateChange(selectedDate): void {
+  public handleDateChange(selectedDate): void {
     this.date = selectedDate;
     const convertedDate = this.date.toISOString().split('T')[0];
 
@@ -82,15 +83,16 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  onSubmitBook(data): void {
+  public onSubmitBook(data): void {
     this.bookings.push(data);
   }
 
-  checkBook(book): void {
+  public checkBook(book): void {
     this.selectedBook = book;
   }
 
-  teste(): void {
+  public teste(): void {
+    this.clearButton = false;
     const item = {
       id: '3',
       nome: 'teste',
@@ -104,7 +106,22 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  removeItem(): void {
-    console.log('remove');
+  public removeItem(item): void {
+    const itemFound = this.cart.find(cartItem => cartItem.id === item.id);
+    if (itemFound.qty > 1) {
+      itemFound.qty--;
+    } else {
+      const index = this.cart.indexOf(itemFound);
+      if (index > -1) {
+        this.cart.splice(index, 1);
+      }
+    }
+    console.log(this.cart);
   }
+
+  public clearCart(): void {
+    this.cart = [];
+    this.clearButton = true;
+  }
+
 }

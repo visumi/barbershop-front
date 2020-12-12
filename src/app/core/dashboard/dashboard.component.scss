@@ -34,6 +34,12 @@
 
 .minus {
     cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+.minus:hover {  
+    color: lightgrey
 }
 
 
