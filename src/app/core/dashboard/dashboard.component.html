@@ -56,13 +56,15 @@
             <div class="col-6">
                 <nb-card class="h-100" accent="success">
                     <nb-card-header>
-                        <h5 class="text-center titulo">Reserva de {{selectedBook.client | uppercase }}</h5>
+                        <h5 *ngIf="selectedBook.client === ''" class="text-center titulo">Nenhuma Reserva</h5>
+                        <h5 *ngIf="selectedBook.client != ''" class="text-center titulo">Reserva de {{selectedBook.client | uppercase }}</h5>
                     </nb-card-header>
                     <nb-card-body>
                         <div class="row">
                             <div class="col-9">
                                 <h4 class="pl-1">Data</h4>
                                 <p>{{selectedBook.date}}</p>
+                                <nb-toggle status ="success" labelPosition="end" (checkedChange)="avulsoToggle()">Venda Avulsa</nb-toggle>
                             </div>
                             <div class="col-3">
                                 <h4 class="text-right pr-3">Horário</h4>

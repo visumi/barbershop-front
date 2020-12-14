@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
 
+  avulso = false;
   dateButton = true;
   clearButton = true;
   newBooking: FormGroup;
@@ -19,7 +20,7 @@ export class DashboardComponent implements OnInit {
     time: string
   } = {
     date: '00/00/0000',
-    client: 'Ninguém',
+    client: '',
     time: '00:00'
   };
 
@@ -124,4 +125,20 @@ export class DashboardComponent implements OnInit {
     this.clearButton = true;
   }
 
+  public avulsoToggle(): void {
+    this.avulso = !this.avulso;
+    if (this.avulso === true) {
+      this.selectedBook = {
+        date: '14/12/2020',
+        client: '',
+        time: '12:00'
+      };
+    } else {
+      this.selectedBook = {
+        date: '00/00/0000',
+        client: '',
+        time: '00:00'
+      };
+    }
+  }
 }
