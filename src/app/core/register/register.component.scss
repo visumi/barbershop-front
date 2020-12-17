@@ -11,3 +11,13 @@
         font-family: 'Roboto', sans-serif;
     }
 }
+
+.arrow-back {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+.arrow-back:hover {  
+    color: lightgrey
+}

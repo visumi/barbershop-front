@@ -6,7 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule,
 NbButtonModule, NbAlertModule, NbSelectModule, NbSidebarModule, NbCalendarModule, NbListModule, NbToggleModule, NbUserModule,
-NbSpinnerModule, NbContextMenuModule, NbMenuModule} from '@nebular/theme';
+NbSpinnerModule, NbContextMenuModule, NbMenuModule, NbToastrModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HeaderComponent } from './core/header/header.component';
 import { LoginComponent } from './core/login/login.component';
@@ -54,6 +54,7 @@ import { ChangeFormComponent } from './core/change/change-form/change-form.compo
     NbSpinnerModule,
     NbContextMenuModule,
     NbMenuModule.forRoot(),
+    NbToastrModule.forRoot(),
     NbEvaIconsModule
   ],
   providers: [],

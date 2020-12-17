@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
+import { NbToastrService } from '@nebular/theme';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class ChangeFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private toastrService: NbToastrService
   ) { }
 
   ngOnInit(): void {
@@ -59,13 +61,12 @@ export class ChangeFormComponent implements OnInit {
       this.alert = true;
     } else {
       this.loginService.changeAuth(data).subscribe(
-        (res) => {
+        () => {
           this.spinnerChange = false;
-          console.log(res);
+          this.showToast('Senha alterada', 'Sucesso', 'success');
         }, () => {
           this.spinnerChange = false;
-          this.message = 'Erro no servidor';
-          this.alert = true;
+          this.showToast('Problema no servidor', 'Erro', 'danger');
         }
       );
     }
@@ -73,6 +74,10 @@ export class ChangeFormComponent implements OnInit {
 
   onClose(): void {
     this.alert = false;
+  }
+
+  showToast(message, title, status): void {
+    this.toastrService.show(message, title, { status, icon: 'lock', iconPack: 'eva' });
   }
 
 }

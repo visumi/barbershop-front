@@ -37,4 +37,8 @@ export class ChangeComponent implements OnInit {
     this.statusOld = 'success';
   }
 
+  goBack(): void {
+    this.router.navigate(['login']);
+  }
+
 }
