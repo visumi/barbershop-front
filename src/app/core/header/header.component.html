@@ -1,21 +1,29 @@
 <nb-layout>
-    <nb-layout-header>
+    <nb-layout-header fixed>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img src="../../../assets/teste2.png" alt="...">
+                    <span class="float-right mt-3"><nb-user [name]="userName" [title]="userRole" color="#8a8a8a" [nbContextMenu]="contextItems" nbContextMenuTag="context-menu"></nb-user></span>
+                </div>
+            </div>
+        </div>
     </nb-layout-header>
     <nb-sidebar state="compacted">
         <div class="row">
             <div class="col-12">
-                <a href="#" (click)="toggle()">
+                <a href="#" (click)="toggle()" class="bar-icons">
                     <nb-icon nbPrefix [icon]="sideToggle ? 'menu-arrow' : 'menu'" pack="eva"></nb-icon>
                 </a>
             </div>
             <div class="col-12">
-                <a href="#" (click)="toggle()" class="text-decoration-none">
-                    <nb-icon nbPrefix icon="calendar" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont">Teste 1</p>
+                <a href="#" (click)="toggle()" class="bar-icons">
+                    <nb-icon nbPrefix icon="calendar" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Teste 1</p>
                 </a>
             </div>
             <div class="col-12">
-                <a href="#" (click)="toggle()" class="text-decoration-none">
-                    <nb-icon nbPrefix icon="alert-circle" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont">Teste 2</p>
+                <a href="#" (click)="toggle()" class="bar-icons">
+                    <nb-icon nbPrefix icon="alert-circle" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Teste 2</p>
                 </a>
             </div>
         </div>

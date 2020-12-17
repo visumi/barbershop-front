@@ -10,12 +10,12 @@
                     <nb-card-body>
                         <h3 class="text-center titulo">Login</h3>
                         <div class="row">
-                            <div class="col p-3 mt-5">
+                            <div class="col p-3 mt-2">
                                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
                                     <nb-form-field>
                                         <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
                                         <input type="text" nbInput fullWidth shape="semi-round" placeholder="Usuário"
-                                            formControlName="user">
+                                            formControlName="userKey">
                                     </nb-form-field>
                                     <br>
                                     <nb-form-field>
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col text-center">
-                                            <button nbButton fullWidth hero status="success" type="submit">Entrar<nb-icon nbPrefix
+                                            <button [nbSpinner]="spinnerLogin" nbSpinnerStatus="control" nbButton fullWidth hero status="success" type="submit">Entrar<nb-icon nbPrefix
                                                     icon="arrow-right" pack="eva"></nb-icon></button>
                                         </div>
                                     </div>
@@ -38,8 +38,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col text-center">
-                                <button nbButton fullWidth hero status="info" [routerLink]="'/cadastro'">Cadastrar<nb-icon nbPrefix icon="edit-2"
+                            <div class="col-6 text-center">
+                                <button nbButton fullWidth hero status="warning" [routerLink]="'/change'">Alterar minha Senha<nb-icon nbPrefix icon="edit-2"
+                                        pack="eva"></nb-icon></button>
+                            </div>
+                            <div class="col-6 text-center">
+                                <button nbButton fullWidth hero status="danger" [routerLink]="'/forgot'">Esqueci minha Senha<nb-icon nbPrefix icon="question-mark-circle"
                                         pack="eva"></nb-icon></button>
                             </div>
                         </div>

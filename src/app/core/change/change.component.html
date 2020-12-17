@@ -1,0 +1,38 @@
+<nb-layout>
+    <nb-layout-column class="container">
+        <nb-card accent="primary" size="small">
+            <nb-card-body>
+                <h5 class="text-center titulo">Alterar Senha</h5>
+                <p class="text-center titulo">Informe o código ou a senha antiga para alterar a senha</p>
+                <div class="row">
+                    <div class="col p-3 mt-2">
+                        <form [formGroup]="changeForm" (ngSubmit)="onSubmit(changeForm.value)">
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
+                                <input type="text" nbInput fullWidth shape="semi-round" placeholder="Usuário"
+                                    formControlName="userKey">
+                            </nb-form-field>
+                            <br>
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="lock" pack="eva"></nb-icon>
+                                <input type="password" nbInput fullWidth shape="semi-round" placeholder="Senha"
+                                    formControlName="newPassword">
+                            </nb-form-field>
+                            <div class="row">
+                                <div class="col-12 mt-3 text-center">
+                                    <!-- <nb-alert status="danger" closable (close)="onClose()" *ngIf="alert">Usuário ou Senha incorretos</nb-alert> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <button nbSpinnerStatus="control" nbButton fullWidth hero status="success" type="submit">Alterar<nb-icon nbPrefix
+                                            icon="edit-2" pack="eva"></nb-icon></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>

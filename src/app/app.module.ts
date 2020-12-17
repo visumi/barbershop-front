@@ -5,13 +5,16 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule,
-NbButtonModule, NbAlertModule, NbSelectModule, NbSidebarModule, NbCalendarModule, NbListModule, NbToggleModule} from '@nebular/theme';
+NbButtonModule, NbAlertModule, NbSelectModule, NbSidebarModule, NbCalendarModule, NbListModule, NbToggleModule, NbUserModule,
+NbSpinnerModule, NbContextMenuModule, NbMenuModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HeaderComponent } from './core/header/header.component';
 import { LoginComponent } from './core/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './core/dashboard/dashboard.component';
 import { RegisterComponent } from './core/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ChangeComponent } from './core/change/change.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { RegisterComponent } from './core/register/register.component';
     HeaderComponent,
     LoginComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChangeComponent
   ],
   imports: [
     BrowserModule,
@@ -39,10 +43,15 @@ import { RegisterComponent } from './core/register/register.component';
     NbSelectModule,
     NbCalendarModule,
     ReactiveFormsModule,
+    HttpClientModule,
     NbToggleModule,
     NbListModule,
+    NbUserModule,
     NbButtonModule,
     NbInputModule,
+    NbSpinnerModule,
+    NbContextMenuModule,
+    NbMenuModule.forRoot(),
     NbEvaIconsModule
   ],
   providers: [],
