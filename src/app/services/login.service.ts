@@ -17,4 +17,8 @@ export class LoginService {
     return this.http.put('https://barbermanagement-api.azurewebsites.net/api/v1/Auth/forgot-password', body);
   }
 
+  changeAuth(body: {}): Observable<object> {
+    return this.http.put('https://barbermanagement-api.azurewebsites.net/api/v1/Auth/change-password', body);
+  }
+
 }

@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <div class="row text-center">
+        <div class="col-12">
+            <form [formGroup]="changeForm" (ngSubmit)="onSubmit(changeForm.value)">
+                <nb-form-field>
+                    <nb-icon nbPrefix [icon]="verIcon" pack="eva"></nb-icon>
+                    <input [type]="fieldType" nbInput fullWidth shape="semi-round" [placeholder]="verification"
+                        formControlName="verification">
+                </nb-form-field>
+                <br>
+                <nb-form-field>
+                    <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
+                    <input type="text" nbInput fullWidth shape="semi-round" placeholder="Usuário"
+                        formControlName="userKey">
+                </nb-form-field>
+                <br>
+                <nb-form-field>
+                    <nb-icon nbPrefix icon="unlock" pack="eva"></nb-icon>
+                    <input type="password" nbInput fullWidth shape="semi-round" placeholder="Nova Senha"
+                        formControlName="newPassword">
+                </nb-form-field>
+                <div class="row">
+                    <div class="col-12 mt-3 text-center">
+                        <nb-alert status="danger" closable (close)="onClose()" *ngIf="alert">{{ message }}</nb-alert>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <button [nbSpinner]="spinnerChange" nbSpinnerStatus="control" nbButton fullWidth hero status="success" type="submit">Alterar<nb-icon nbPrefix
+                                icon="arrow-right" pack="eva"></nb-icon></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

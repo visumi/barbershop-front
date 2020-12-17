@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { NavigationStart, Router, Event } from '@angular/router';
 
 @Component({
   selector: 'app-change',
@@ -8,27 +8,33 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ChangeComponent implements OnInit {
 
-  changeForm: FormGroup;
+  statusCode = 'primary';
+  statusOld = 'primary';
 
   constructor(
-    private formBuilder: FormBuilder,
-  ) { }
-
-  ngOnInit(): void {
-    this.changeForm = this.formBuilder.group({
-      userKey: '',
-      newPassword: '',
-      grantType: '',
-      verification: ''
+    private router: Router
+  ) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        this.statusCode = 'primary';
+        this.statusOld = 'primary';
+      }
     });
   }
 
-  onSubmit(data): void {
-    console.log(data);
+  ngOnInit(): void {
   }
 
-  onClose(): void {
-    console.log('close');
+  goCode(): void {
+    this.statusOld = 'primary';
+    this.router.navigate(['change/code']);
+    this.statusCode = 'success';
+  }
+
+  goOld(): void {
+    this.statusCode = 'primary';
+    this.router.navigate(['change/old']);
+    this.statusOld = 'success';
   }
 
 }

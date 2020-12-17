@@ -15,6 +15,7 @@ import { DashboardComponent } from './core/dashboard/dashboard.component';
 import { RegisterComponent } from './core/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChangeComponent } from './core/change/change.component';
+import { ChangeFormComponent } from './core/change/change-form/change-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ChangeComponent } from './core/change/change.component';
     LoginComponent,
     DashboardComponent,
     RegisterComponent,
-    ChangeComponent
+    ChangeComponent,
+    ChangeFormComponent
   ],
   imports: [
     BrowserModule,
