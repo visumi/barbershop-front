@@ -13,14 +13,14 @@
                                 <form [formGroup]="newBooking" (ngSubmit)="createSchedule(newBooking.value)">
                                     <nb-form-field>
                                         <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
-                                        <nb-select fullWidth shape="semi-round" formControlName="idClient" placeholder="Nome do Cliente" [(selected)]="selectedService">
+                                        <nb-select fullWidth shape="semi-round" formControlName="idClient" placeholder="Nome do Cliente">
                                             <nb-option *ngFor="let client of clients" [value]="client.id">{{ client.name }}</nb-option>
                                         </nb-select>
                                     </nb-form-field>
                                     <br>
                                     <nb-form-field>
                                         <nb-icon nbPrefix icon="clipboard" pack="eva"></nb-icon>
-                                        <nb-select fullWidth shape="semi-round" formControlName="idService" placeholder="Serviço" [(selected)]="selectedService">
+                                        <nb-select fullWidth shape="semi-round" formControlName="idService" placeholder="Serviço">
                                             <nb-option *ngFor="let service of services" [value]="service.id">{{ service.name }}</nb-option>
                                         </nb-select>
                                     </nb-form-field>
@@ -35,8 +35,8 @@
                                         <nb-icon nbPrefix icon="lock" pack="eva"></nb-icon>
                                         <input type="time" nbInput fullWidth shape="semi-round" formControlName="time">
                                     </nb-form-field>
-                                    <button class="mt-3" nbButton fullWidth hero status="success" type="submit"
-                                        [disabled]="dateButton">Reservar</button>
+                                    <button class="mt-3" [nbSpinner]="scheduleSpinner" nbButton fullWidth hero status="success" type="submit"
+                                        [disabled]="scheduleButton">Reservar</button>
                                 </form>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                         <h5 class="text-center titulo">Reservas</h5>
                     </nb-card-header>
                     <nb-card-body class="p-0 m-0 card-reserva">
-                        <div class="row reserva" *ngFor="let book of bookings" (click)="checkBook(book)">
+                        <div class="row reserva" *ngFor="let book of bookings" (click)="selectBook(book)">
                             <div class="col-9">
                                 <h6 class="text-capitalize pt-2 pl-3">{{ book.client }}</h6>
                                 <p class="pl-3">{{book.date}}</p>
@@ -71,19 +71,19 @@
                         <div class="row">
                             <div class="col-9">
                                 <h4 class="pl-1">Data</h4>
-                                <p>{{selectedBook.date}}</p>
-                                <nb-toggle status ="success" labelPosition="end" (checkedChange)="avulsoToggle()">Venda Avulsa</nb-toggle>
+                                <p>DATA</p>
+                                <nb-toggle status ="success" labelPosition="end" (checkedChange)="changeAvulso()">Venda Avulsa</nb-toggle>
                             </div>
                             <div class="col-3">
                                 <h4 class="text-right pr-3">Horário</h4>
-                                <p class="text-right pr-5">{{selectedBook.time}}</p>
+                                <p class="text-right pr-5">HORARIO</p>
                             </div>
                         </div>
                         <div class="row mt-5">
                             <div class="col-12 text-center">
                                 <div class="cart d-flex justify-content-center align-items-center">
                                     <h5 class="m-0 ml-auto">Carrinho</h5><nb-icon nbPrefix icon="shopping-cart" pack="eva"></nb-icon>
-                                    <div class="ml-auto p-2 plus"><a (click)="teste()"><nb-icon nbPrefix icon="plus-circle" pack="eva"></nb-icon></a></div>
+                                    <div class="ml-auto p-2 plus"><a (click)="openModal()"><nb-icon nbPrefix icon="plus-circle" pack="eva"></nb-icon></a></div>
                                 </div>
                                 <nb-card class="cart-card rounded-0">
                                     <nb-card-body class="p-0 cart-body">
