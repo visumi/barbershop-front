@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
   // Dados úteis
   date = new Date(); // Data que será alterada
   today = new Date(); // Data que será usada como parâmetro
-  loadSchedulesDate: string;
+  loadSchedulesDate: string; // Data atual selecionada no calendar no formato ISO
 
   selectedBook: { // Salva qual a Reserva está selecionada no momento, ao iniciar será o valor Default
     client: string,
@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit {
     this.services = servicesAux;
   }
 
-  private loadSchedules(date): void {
+  private loadSchedules(date): void { // Carrega as Reservas do banco
     this.scheduleCardSpinner = true;
     const bookingsAux = [];
     this.dashboardService.getSchedules(this.guid, date).subscribe(
