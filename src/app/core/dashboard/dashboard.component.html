@@ -10,16 +10,24 @@
                     <nb-card-body>
                         <div class="row align-items-center">
                             <div class="col-12">
-                                <form [formGroup]="newBooking" (ngSubmit)="onSubmitBook(newBooking.value)">
+                                <form [formGroup]="newBooking" (ngSubmit)="createSchedule(newBooking.value)">
                                     <nb-form-field>
                                         <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
-                                        <input type="text" nbInput fullWidth shape="semi-round"
-                                            placeholder="Nome do Cliente" formControlName="client">
+                                        <nb-select fullWidth shape="semi-round" formControlName="idClient" placeholder="Nome do Cliente" [(selected)]="selectedService">
+                                            <nb-option *ngFor="let client of clients" [value]="client.id">{{ client.name }}</nb-option>
+                                        </nb-select>
+                                    </nb-form-field>
+                                    <br>
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="clipboard" pack="eva"></nb-icon>
+                                        <nb-select fullWidth shape="semi-round" formControlName="idService" placeholder="Serviço" [(selected)]="selectedService">
+                                            <nb-option *ngFor="let service of services" [value]="service.id">{{ service.name }}</nb-option>
+                                        </nb-select>
                                     </nb-form-field>
                                     <br>
                                     <nb-form-field>
                                         <nb-icon nbPrefix icon="lock" pack="eva"></nb-icon>
-                                        <input type="date" nbInput fullWidth shape="semi-round" formControlName="date"
+                                        <input type="date" nbInput fullWidth shape="semi-round" formControlName="scheduledAt"
                                             disabled>
                                     </nb-form-field>
                                     <br>

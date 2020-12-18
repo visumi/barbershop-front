@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,6 +9,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
 
+  services: any[];
+  clients: any[];
+
+  selectedService: string;
+  guid = '752dbb08-cb39-4941-8e91-b2f8d10383ed';
   avulso = false;
   dateButton = true;
   clearButton = true;
@@ -61,15 +67,54 @@ export class DashboardComponent implements OnInit {
   ];
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dashboardService: DashboardService
   ) { }
 
   ngOnInit(): void {
+    this.getClients();
+    this.getServices();
+
     this.newBooking = this.formBuilder.group({
-      client: '',
-      date: '',
+      idService: '',
+      idClient: '',
+      scheduledAt: '',
       time: ''
     });
+  }
+
+  private getClients(): void {
+    const clientsAux = [];
+    this.dashboardService.getClients(this.guid).subscribe(
+      (res) => {
+        Object.keys(res).forEach((client) => {
+          clientsAux.push({
+            id: res[client].id,
+            name: res[client].name
+          });
+        });
+      }, (error) => {
+        console.log(error);
+      }
+    );
+    this.clients = clientsAux;
+  }
+
+  private getServices(): void {
+    const servicesAux = [];
+    this.dashboardService.getServices(this.guid).subscribe(
+      (res) => {
+        Object.keys(res).forEach((service) => {
+          servicesAux.push({
+            id: res[service].id,
+            name: res[service].name
+          });
+        });
+      }, (error) => {
+        console.log(error);
+      }
+    );
+    this.services = servicesAux;
   }
 
   public handleDateChange(selectedDate): void {
@@ -79,13 +124,26 @@ export class DashboardComponent implements OnInit {
     if (selectedDate < this.today) {
       this.dateButton = true;
     } else {
-      this.newBooking.setValue({ client: '', date: convertedDate, time: '' });
+      this.newBooking.setValue({ idClient: '', scheduledAt: convertedDate, idService: '', time: '' });
       this.dateButton = false;
     }
   }
 
-  public onSubmitBook(data): void {
-    this.bookings.push(data);
+  public createSchedule(data): void {
+    const book = {
+      idBarberShop: this.guid,
+      idService: data.idService,
+      idClient: data.idClient,
+      scheduledAt:  data.scheduledAt + 'T' + data.time + ':00.000Z'
+    };
+
+    this.dashboardService.addSchedule(book).subscribe(
+      (res) => {
+        console.log(res);
+      }, (error) => {
+        console.log(error);
+       }
+    );
   }
 
   public checkBook(book): void {

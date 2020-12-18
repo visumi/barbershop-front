@@ -2,3 +2,7 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+.nb-theme-dark .nb-form-field-limited-width.nb-form-field-size-medium {
+    max-width: 100%;
+}
