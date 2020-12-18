@@ -23,6 +23,9 @@ export class DashboardComponent implements OnInit {
   scheduleSpinner = false; // Spinner do botao de Reservar
   avulsoToggle = false; // Identifica se a venda é avulsa ou não
   clearButton = true; // Controla o botão de Limpar do carrinho
+  scheduleCardSpinner = false; // Spinner do card das Reservas
+  deleteButton = true; // Controla o botão de Excluir Reserva
+  emptySchedule = true; // Controla se há reservas no dia
 
   // Form
   newBooking: FormGroup; // Cria o form de Nova Reserva
@@ -30,18 +33,21 @@ export class DashboardComponent implements OnInit {
   // Dados úteis
   date = new Date(); // Data que será alterada
   today = new Date(); // Data que será usada como parâmetro
+  loadSchedulesDate: string;
 
   selectedBook: { // Salva qual a Reserva está selecionada no momento, ao iniciar será o valor Default
-    id: string,
-    service: string,
     client: string,
-    scheduledAt: string
+    id: string,
+    scheduledAt: string,
+    time: string,
+    service: string
   } = {
-    id: '',
-    service: '',
-    client: '',
-    scheduledAt: ''
-  };
+      client: '',
+      id: '',
+      scheduledAt: '',
+      time: '',
+      service: ''
+    };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -101,10 +107,57 @@ export class DashboardComponent implements OnInit {
     this.services = servicesAux;
   }
 
+  private loadSchedules(date): void {
+    this.scheduleCardSpinner = true;
+    const bookingsAux = [];
+    this.dashboardService.getSchedules(this.guid, date).subscribe(
+      (res) => {
+        this.scheduleCardSpinner = false;
+        this.emptySchedule = false;
+        if (Object.keys(res).length === 0) {
+          this.emptySchedule = true;
+        }
+        Object.keys(res).forEach((book) => {
+          const rawData = res[book].scheduledAt;
+          const modData = [];
+          const bookDate = rawData.split('T')[0];
+          modData.push(rawData.split('T')[1].split('Z')[0].split(':'));
+          modData[0].splice(2, 1);
+          const bookHour = modData[0].join(':');
+
+          bookingsAux.push({
+            client: res[book].client,
+            id: res[book].id,
+            scheduledAt: bookDate,
+            time: bookHour,
+            service: res[book].service
+          });
+        });
+      }, () => {
+        this.scheduleCardSpinner = false;
+        this.showToast('Problema ao carregar Reservas', 'Erro', 'danger');
+      }
+    );
+    this.bookings = bookingsAux;
+  }
+
+  public deleteSchedule(): void { // Deleta uma reserva
+    this.dashboardService.deleteSchedule(this.guid, this.selectedBook.id).subscribe(
+      () => {
+        this.showToast('Reserva excluída', 'Sucesso', 'success');
+        this.loadSchedules(this.loadSchedulesDate);
+      }, () => {
+        this.showToast('Problema ao deletar Reserva', 'Erro', 'danger');
+      }
+    );
+  }
+
   public handleDateChange(selectedDate): void { // Converte a data para o formulário da Nova Reserva e controla o botão
     this.date = selectedDate;
-    const convertedDate = this.date.toISOString().split('T')[0];
+    this.loadSchedulesDate = selectedDate.toISOString();
 
+    const convertedDate = this.date.toISOString().split('T')[0];
+    this.loadSchedules(this.loadSchedulesDate);
     if (selectedDate < this.today) { // Se a data for menor que o dia atual, trava o botão
       this.scheduleButton = true;
     } else {
@@ -119,39 +172,45 @@ export class DashboardComponent implements OnInit {
       idBarberShop: this.guid,
       idService: data.idService,
       idClient: data.idClient,
-      scheduledAt:  data.scheduledAt + 'T' + data.time + ':00.000Z'
+      scheduledAt: data.scheduledAt + 'T' + data.time + ':00.000Z'
     };
 
     this.dashboardService.addSchedule(book).subscribe(
       () => {
         this.scheduleSpinner = false;
         this.showToast('Reserva criada', 'Sucesso', 'success');
+        this.loadSchedules(data.scheduledAt + 'T' + data.time + ':00.000Z');
       }, () => {
         this.scheduleSpinner = false;
         this.showToast('Problema ao criar Reserva', 'Erro', 'danger');
-       }
+      }
     );
   }
 
   public selectBook(book): void { // Modifica qual a Reserva está selecionada no momento
+    this.deleteButton = false;
     this.selectedBook = book;
+    console.log(this.selectedBook);
   }
 
   public changeAvulso(): void { // Muda os dados da Reserva selecionada de acordo com o Toggle
+    this.deleteButton = true;
     this.avulsoToggle = !this.avulsoToggle;
     if (this.avulsoToggle === true) {
       this.selectedBook = { // Aqui a venda é avulsa, precisa pegar data e tempo do momento do toggle
-        id: '',
-        service: '',
         client: '',
-        scheduledAt: ''
+        id: '',
+        scheduledAt: '',
+        time: '',
+        service: ''
       };
     } else {
       this.selectedBook = {
-        id: '',
-        service: '',
         client: '',
-        scheduledAt: ''
+        id: '',
+        scheduledAt: '',
+        time: '',
+        service: ''
       };
     }
   }

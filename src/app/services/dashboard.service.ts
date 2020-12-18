@@ -15,6 +15,16 @@ export class DashboardService {
     return this.http.post('https://barbermanagement-api.azurewebsites.net/api/v1/schedule', body, { headers: header });
   }
 
+  getSchedules(guid, date): Observable<object> {
+    return this.http.get('https://barbermanagement-api.azurewebsites.net/api/v1/schedule/by-date/'
+     + guid + '/' + date, { headers: header });
+  }
+
+  deleteSchedule(guid, id): Observable<object> {
+    return this.http.delete('https://barbermanagement-api.azurewebsites.net/api/v1/schedule/'
+     + guid + '/' + id, { headers: header });
+  }
+
   getServices(guid): Observable<object> {
     return this.http.get('https://barbermanagement-api.azurewebsites.net/api/v1/service/' + guid, { headers: header });
   }

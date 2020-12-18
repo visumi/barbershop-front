@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(data): void {
-    console.log(data);
     this.spinnerLogin = true;
     this.loginService.loginAuth(data).subscribe(
       (res: {accessToken: string}) => {

@@ -32,7 +32,7 @@
                                     </nb-form-field>
                                     <br>
                                     <nb-form-field>
-                                        <nb-icon nbPrefix icon="lock" pack="eva"></nb-icon>
+                                        <nb-icon nbPrefix icon="clock" pack="eva"></nb-icon>
                                         <input type="time" nbInput fullWidth shape="semi-round" formControlName="time">
                                     </nb-form-field>
                                     <button class="mt-3" [nbSpinner]="scheduleSpinner" nbButton fullWidth hero status="success" type="submit"
@@ -48,35 +48,47 @@
                     <nb-card-header>
                         <h5 class="text-center titulo">Reservas</h5>
                     </nb-card-header>
-                    <nb-card-body class="p-0 m-0 card-reserva">
+                    <nb-card-body class="p-0 m-0 card-reserva" [nbSpinner]="scheduleCardSpinner">
                         <div class="row reserva" *ngFor="let book of bookings" (click)="selectBook(book)">
                             <div class="col-9">
                                 <h6 class="text-capitalize pt-2 pl-3">{{ book.client }}</h6>
-                                <p class="pl-3">{{book.date}}</p>
+                                <p class="pl-3">{{book.service}}</p>
                             </div>
                             <div class="col-3 my-auto">
                                 <h4 class="pr-3">{{book.time}}</h4>
                             </div>
                         </div>
+                        <p *ngIf="emptySchedule" class="mt-3 text-center">Nenhuma reserva encontrada</p>
                     </nb-card-body>
                 </nb-card>
             </div>
             <div class="col-6">
                 <nb-card class="h-100" accent="success">
                     <nb-card-header>
-                        <h5 *ngIf="selectedBook.client === ''" class="text-center titulo">Nenhuma Reserva</h5>
-                        <h5 *ngIf="selectedBook.client != ''" class="text-center titulo">Reserva de {{selectedBook.client | uppercase }}</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 *ngIf="selectedBook.client === ''" class="text-center titulo">Nenhuma Reserva</h5>
+                                <h5 *ngIf="selectedBook.client != ''" class="text-center titulo">Reserva de {{selectedBook.client | uppercase }}</h5>
+                            </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
+                                <nb-toggle status ="success" labelPosition="end" (checkedChange)="changeAvulso()">Venda Avulsa</nb-toggle>
+                            </div>
+                            <div class="col-6 d-flex align-items-end flex-column">
+                                <button nbButton hero size="small" status="danger" type="submit" [disabled]="deleteButton" (click)="deleteSchedule()">Excluir</button>
+                            </div>
+                        </div>
                     </nb-card-header>
                     <nb-card-body>
                         <div class="row">
                             <div class="col-9">
                                 <h4 class="pl-1">Data</h4>
-                                <p>DATA</p>
-                                <nb-toggle status ="success" labelPosition="end" (checkedChange)="changeAvulso()">Venda Avulsa</nb-toggle>
+                                <p>{{selectedBook.scheduledAt}}</p>
                             </div>
                             <div class="col-3">
                                 <h4 class="text-right pr-3">Horário</h4>
-                                <p class="text-right pr-5">HORARIO</p>
+                                <p class="text-right pr-5">{{selectedBook.time}}</p>
                             </div>
                         </div>
                         <div class="row mt-5">
