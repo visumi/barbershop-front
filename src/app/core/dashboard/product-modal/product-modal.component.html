@@ -1,0 +1,19 @@
+<form [formGroup]="selectService" (ngSubmit)="selecionar(selectService.value)">
+    <nb-form-field>
+        <nb-icon nbPrefix icon="scissors" pack="eva"></nb-icon>
+        <nb-select fullWidth shape="semi-round" formControlName="item" placeholder="Serviço">
+            <nb-option *ngFor="let service of services" [value]="service">{{ service.name }}</nb-option>
+        </nb-select>
+    </nb-form-field>
+    <button class="mt-3" [disabled]="!selectService.valid" nbButton fullWidth hero status="success" type="submit">Adicionar</button>
+</form>
+<br>
+<form [formGroup]="selectProduct" (ngSubmit)="selecionar(selectProduct.value)">
+    <nb-form-field>
+        <nb-icon nbPrefix icon="clipboard" pack="eva"></nb-icon>
+        <nb-select fullWidth shape="semi-round" formControlName="item" placeholder="Produto">
+            <nb-option *ngFor="let product of products" [value]="product">{{ product.name }}</nb-option>
+        </nb-select>
+    </nb-form-field>
+    <button class="mt-3" [disabled]="!selectProduct.valid" nbButton fullWidth hero status="success" type="submit">Adicionar</button>
+</form>

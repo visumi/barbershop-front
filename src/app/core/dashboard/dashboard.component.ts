@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { NbToastrService } from '@nebular/theme';
+import { NbToastrService, NbWindowService } from '@nebular/theme';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { ProductModalComponent } from './product-modal/product-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,6 @@ export class DashboardComponent implements OnInit {
   scheduleButton = true; // Controla o botão de Reserva
   scheduleSpinner = false; // Spinner do botao de Reservar
   avulsoToggle = false; // Identifica se a venda é avulsa ou não
-  clearButton = true; // Controla o botão de Limpar do carrinho
   scheduleCardSpinner = false; // Spinner do card das Reservas
   deleteButton = true; // Controla o botão de Excluir Reserva
   emptySchedule = true; // Controla se há reservas no dia
@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
   newBooking: FormGroup; // Cria o form de Nova Reserva
 
   // Dados úteis
-  date = new Date(); // Data que será alterada
+  date: Date; // Data que será alterada
   today = new Date(); // Data que será usada como parâmetro
   loadSchedulesDate: string; // Data atual selecionada no calendar no formato ISO
 
@@ -40,19 +40,22 @@ export class DashboardComponent implements OnInit {
     id: string,
     scheduledAt: string,
     time: string,
-    service: string
+    service: string,
+    idService: string
   } = {
       client: '',
       id: '',
       scheduledAt: '',
       time: '',
-      service: ''
+      service: '',
+      idService: ''
     };
 
   constructor(
     private formBuilder: FormBuilder,
     private dashboardService: DashboardService,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+    private windowService: NbWindowService
   ) { }
 
   ngOnInit(): void {
@@ -130,7 +133,8 @@ export class DashboardComponent implements OnInit {
             id: res[book].id,
             scheduledAt: bookDate,
             time: bookHour,
-            service: res[book].service
+            service: res[book].service,
+            idService: res[book].idService
           });
         });
       }, () => {
@@ -146,6 +150,15 @@ export class DashboardComponent implements OnInit {
       () => {
         this.showToast('Reserva excluída', 'Sucesso', 'success');
         this.loadSchedules(this.loadSchedulesDate);
+        this.selectedBook = {
+          client: '',
+          id: '',
+          scheduledAt: '',
+          time: '',
+          service: '',
+          idService: ''
+        };
+        this.cart = [];
       }, () => {
         this.showToast('Problema ao deletar Reserva', 'Erro', 'danger');
       }
@@ -188,21 +201,36 @@ export class DashboardComponent implements OnInit {
   }
 
   public selectBook(book): void { // Modifica qual a Reserva está selecionada no momento
+    this.cart = [];
     this.deleteButton = false;
     this.selectedBook = book;
-    console.log(this.selectedBook);
+    this.dashboardService.getService(this.guid, this.selectedBook.idService).subscribe(
+      (res: any) => {
+        this.cart.push({
+          id: res.id,
+          name: res.name,
+          price: res.price,
+          qty: 1,
+          type: 'service'
+        });
+      }, (error) => {
+        console.log(error);
+      }
+    );
   }
 
   public changeAvulso(): void { // Muda os dados da Reserva selecionada de acordo com o Toggle
     this.deleteButton = true;
     this.avulsoToggle = !this.avulsoToggle;
+    const formatedDate = this.today.toISOString().split('T')[0];
     if (this.avulsoToggle === true) {
       this.selectedBook = { // Aqui a venda é avulsa, precisa pegar data e tempo do momento do toggle
         client: '',
         id: '',
-        scheduledAt: '',
-        time: '',
-        service: ''
+        scheduledAt: formatedDate,
+        time: this.today.getHours() + ':' + this.today.getMinutes(),
+        service: '',
+        idService: ''
       };
     } else {
       this.selectedBook = {
@@ -210,24 +238,26 @@ export class DashboardComponent implements OnInit {
         id: '',
         scheduledAt: '',
         time: '',
-        service: ''
+        service: '',
+        idService: ''
       };
     }
   }
 
-  public openModal(): void { // Abre o modal para selecionar os produtos
-    this.clearButton = false;
-    const item = {
-      id: '3',
-      nome: 'teste',
-      qty: 1
-    };
-    const itemFound = this.cart.find(cartitem => cartitem.id === item.id);
-    if (itemFound) {
-      itemFound.qty++;
-    } else {
-      this.cart.push(item);
-    }
+  public openWindow(): void { // Abre o modal dos produtos
+    this.windowService.open(ProductModalComponent, {
+      title: `Selecione`,
+      context: {
+        selecionar: (selecionado) => {
+          const itemFound = this.cart.find(cartitem => cartitem.id === selecionado.item.id);
+          if (itemFound) {
+            itemFound.qty++;
+          } else {
+            this.cart.push(selecionado.item);
+          }
+        }
+      }
+    });
   }
 
   public removeItem(item): void { // Remove um item do carrinho
@@ -245,6 +275,5 @@ export class DashboardComponent implements OnInit {
 
   public clearCart(): void { // Limpa o carrinho
     this.cart = [];
-    this.clearButton = true;
   }
 }

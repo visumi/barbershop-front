@@ -6,7 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule,
 NbButtonModule, NbAlertModule, NbSelectModule, NbSidebarModule, NbCalendarModule, NbListModule, NbToggleModule, NbUserModule,
-NbSpinnerModule, NbContextMenuModule, NbMenuModule, NbToastrModule} from '@nebular/theme';
+NbSpinnerModule, NbContextMenuModule, NbMenuModule, NbToastrModule, NbWindowModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HeaderComponent } from './core/header/header.component';
 import { LoginComponent } from './core/login/login.component';
@@ -16,6 +16,7 @@ import { RegisterComponent } from './core/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChangeComponent } from './core/change/change.component';
 import { ChangeFormComponent } from './core/change/change-form/change-form.component';
+import { ProductModalComponent } from './core/dashboard/product-modal/product-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ChangeFormComponent } from './core/change/change-form/change-form.compo
     DashboardComponent,
     RegisterComponent,
     ChangeComponent,
-    ChangeFormComponent
+    ChangeFormComponent,
+    ProductModalComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,7 @@ import { ChangeFormComponent } from './core/change/change-form/change-form.compo
     NbContextMenuModule,
     NbMenuModule.forRoot(),
     NbToastrModule.forRoot(),
+    NbWindowModule.forRoot(),
     NbEvaIconsModule
   ],
   providers: [],

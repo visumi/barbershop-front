@@ -19,7 +19,7 @@
                                     </nb-form-field>
                                     <br>
                                     <nb-form-field>
-                                        <nb-icon nbPrefix icon="clipboard" pack="eva"></nb-icon>
+                                        <nb-icon nbPrefix icon="scissors" pack="eva"></nb-icon>
                                         <nb-select fullWidth shape="semi-round" formControlName="idService" placeholder="Serviço">
                                             <nb-option *ngFor="let service of services" [value]="service.id">{{ service.name }}</nb-option>
                                         </nb-select>
@@ -44,11 +44,11 @@
                 </nb-card>
             </div>
             <div class="col-3">
-                <nb-card class="m-0 h-100" accent="success">
+                <nb-card class="m-0 h-100" accent="success" [nbSpinner]="scheduleCardSpinner">
                     <nb-card-header>
                         <h5 class="text-center titulo">Reservas</h5>
                     </nb-card-header>
-                    <nb-card-body class="p-0 m-0 card-reserva" [nbSpinner]="scheduleCardSpinner">
+                    <nb-card-body class="p-0 m-0 card-reserva">
                         <div class="row reserva" *ngFor="let book of bookings" (click)="selectBook(book)">
                             <div class="col-9">
                                 <h6 class="text-capitalize pt-2 pl-3">{{ book.client }}</h6>
@@ -95,14 +95,14 @@
                             <div class="col-12 text-center">
                                 <div class="cart d-flex justify-content-center align-items-center">
                                     <h5 class="m-0 ml-auto">Carrinho</h5><nb-icon nbPrefix icon="shopping-cart" pack="eva"></nb-icon>
-                                    <div class="ml-auto p-2 plus"><a (click)="openModal()"><nb-icon nbPrefix icon="plus-circle" pack="eva"></nb-icon></a></div>
+                                    <div class="ml-auto p-2 plus"><a (click)="openWindow()"><nb-icon nbPrefix icon="plus-circle" pack="eva"></nb-icon></a></div>
                                 </div>
                                 <nb-card class="cart-card rounded-0">
                                     <nb-card-body class="p-0 cart-body">
                                         <div class="row" *ngFor="let item of cart">
                                             <div class="col-12 d-flex justify-content-between item-cart">
                                                 <a class="my-auto ml-2 minus" (click)="removeItem(item)"><nb-icon nbPrefix icon="minus-circle" pack="eva"></nb-icon></a>
-                                                <h6 class="p-2 titulo">{{item.nome}}</h6>
+                                                <h6 class="p-2 titulo">{{item.name}}</h6>
                                                 <p class="p-2 mr-2 font-weight-bold">{{item.qty}}</p>
                                             </div>
                                         </div>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <button nbButton fullWidth hero status="danger" [disabled]="clearButton" (click)="clearCart()">Limpar</button>
+                                <button nbButton fullWidth hero status="danger" (click)="clearCart()">Limpar</button>
                             </div>
                             <div class="col-6">
                                 <button nbButton fullWidth hero status="success">Finalizar</button>
