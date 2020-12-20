@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   deleteButton = true; // Controla o botão de Excluir Reserva
   emptySchedule = true; // Controla se há reservas no dia
   finishSaleButton = true; // Controla o botão de Finalizar
+  cartCardSpinner = false; // Controla o spinner do carrinho
 
   // Form
   newBooking: FormGroup; // Cria o form de Nova Reserva
@@ -203,6 +204,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public selectBook(book): void { // Modifica qual a Reserva está selecionada no momento
+    this.cartCardSpinner = true;
     this.cart = [];
     this.totalPrice = 0;
     this.deleteButton = false;
@@ -218,6 +220,7 @@ export class DashboardComponent implements OnInit {
         });
         this.addTotal(res.price);
         this.finishSaleButton = false;
+        this.cartCardSpinner = false;
       }, (error) => {
         console.log(error);
       }
@@ -238,6 +241,8 @@ export class DashboardComponent implements OnInit {
         idService: ''
       };
     } else {
+      this.cart = [];
+      this.totalPrice = 0;
       this.selectedBook = {
         client: '',
         id: '',
@@ -258,9 +263,11 @@ export class DashboardComponent implements OnInit {
           if (itemFound) {
             itemFound.qty++;
             this.addTotal(itemFound.price);
+            this.finishSaleButton = false;
           } else {
             this.cart.push(selecionado.item);
             this.addTotal(selecionado.item.price);
+            this.finishSaleButton = false;
           }
         }
       }
