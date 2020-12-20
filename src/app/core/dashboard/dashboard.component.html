@@ -102,11 +102,18 @@
                                         <div class="row" *ngFor="let item of cart">
                                             <div class="col-12 d-flex justify-content-between item-cart">
                                                 <a class="my-auto ml-2 minus" (click)="removeItem(item)"><nb-icon nbPrefix icon="minus-circle" pack="eva"></nb-icon></a>
-                                                <h6 class="p-2 titulo">{{item.name}}</h6>
-                                                <p class="p-2 mr-2 font-weight-bold">{{item.qty}}</p>
+                                                <h6 class="py-2 my-auto titulo">{{item.name}}</h6>
+                                                <p class="py-2 my-auto font-weight-bold">Preço: {{item.price | currency:'BRL'}}</p>
+                                                <p class="py-2 my-auto mr-2 font-weight-bold">Qty: {{item.qty}}</p>
                                             </div>
                                         </div>
                                     </nb-card-body>
+                                    <nb-card-footer class="cart rounded-0">
+                                        <div class="row">
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <p class="my-auto titulo font-weight-bold">Preço Total: {{totalPrice |currency: 'BRL'}}</p>
+                                        </div>
+                                    </div></nb-card-footer>
                                 </nb-card>
                             </div>
                         </div>
@@ -115,7 +122,7 @@
                                 <button nbButton fullWidth hero status="danger" (click)="clearCart()">Limpar</button>
                             </div>
                             <div class="col-6">
-                                <button nbButton fullWidth hero status="success">Finalizar</button>
+                                <button nbButton fullWidth hero status="success" [disabled]="finishSaleButton" (click)="finishSale()">Finalizar</button>
                             </div>
                         </div>
                     </nb-card-body>

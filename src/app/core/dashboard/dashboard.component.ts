@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   clients: any[];
   bookings = [];
   cart = [];
+  totalPrice = 0;
 
   // Variáveis de controle
   scheduleButton = true; // Controla o botão de Reserva
@@ -26,10 +27,10 @@ export class DashboardComponent implements OnInit {
   scheduleCardSpinner = false; // Spinner do card das Reservas
   deleteButton = true; // Controla o botão de Excluir Reserva
   emptySchedule = true; // Controla se há reservas no dia
+  finishSaleButton = true; // Controla o botão de Finalizar
 
   // Form
   newBooking: FormGroup; // Cria o form de Nova Reserva
-
   // Dados úteis
   date: Date; // Data que será alterada
   today = new Date(); // Data que será usada como parâmetro
@@ -159,6 +160,7 @@ export class DashboardComponent implements OnInit {
           idService: ''
         };
         this.cart = [];
+        this.totalPrice = 0;
       }, () => {
         this.showToast('Problema ao deletar Reserva', 'Erro', 'danger');
       }
@@ -202,6 +204,7 @@ export class DashboardComponent implements OnInit {
 
   public selectBook(book): void { // Modifica qual a Reserva está selecionada no momento
     this.cart = [];
+    this.totalPrice = 0;
     this.deleteButton = false;
     this.selectedBook = book;
     this.dashboardService.getService(this.guid, this.selectedBook.idService).subscribe(
@@ -213,6 +216,8 @@ export class DashboardComponent implements OnInit {
           qty: 1,
           type: 'service'
         });
+        this.addTotal(res.price);
+        this.finishSaleButton = false;
       }, (error) => {
         console.log(error);
       }
@@ -252,8 +257,10 @@ export class DashboardComponent implements OnInit {
           const itemFound = this.cart.find(cartitem => cartitem.id === selecionado.item.id);
           if (itemFound) {
             itemFound.qty++;
+            this.addTotal(itemFound.price);
           } else {
             this.cart.push(selecionado.item);
+            this.addTotal(selecionado.item.price);
           }
         }
       }
@@ -264,16 +271,66 @@ export class DashboardComponent implements OnInit {
     const itemFound = this.cart.find(cartItem => cartItem.id === item.id);
     if (itemFound.qty > 1) {
       itemFound.qty--;
+      this.removeTotal(itemFound.price);
     } else {
       const index = this.cart.indexOf(itemFound);
       if (index > -1) {
+        this.removeTotal(itemFound.price);
         this.cart.splice(index, 1);
       }
     }
-    console.log(this.cart);
+    if (this.cart.length === 0) {
+      this.finishSaleButton = true;
+      this.totalPrice = 0;
+    }
+  }
+
+  private addTotal(price: number): void { // Soma no valor total
+    this.totalPrice += price;
+  }
+
+  private removeTotal(price: number): void { // Remove do valor total
+    this.totalPrice -= price;
   }
 
   public clearCart(): void { // Limpa o carrinho
     this.cart = [];
+    this.finishSaleButton = true;
+    this.totalPrice = 0;
+  }
+
+  public finishSale(): void { // Finaliza a venda
+    const products = [];
+    const services = [];
+
+    Object.keys(this.cart).forEach((item) => {
+      if (this.cart[item].type === 'product') {
+        products.push({
+          id: this.cart[item].id,
+          quantity: this.cart[item].qty
+        });
+      } else {
+        services.push(
+          this.cart[item].id
+        );
+      }
+    });
+
+    const finalObject = {
+      idBarberShop: this.guid,
+      idSchedule: this.selectedBook.id,
+      totalPrice: this.totalPrice,
+      products: products,
+      services: services
+    };
+
+    this.dashboardService.addSale(finalObject).subscribe(
+      (res) => {
+        console.log(res);
+      }, (error) => {
+        console.log(error);
+      }
+    );
+
   }
 }

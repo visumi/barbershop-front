@@ -42,4 +42,8 @@ export class DashboardService {
     return this.http.get('https://barbermanagement-api.azurewebsites.net/api/v1/product/' + guid, { headers: header });
   }
 
+  addSale(body: {}): Observable<object> {
+    return this.http.post('https://barbermanagement-api.azurewebsites.net/api/v1/sale', body, { headers: header });
+  }
+
 }
