@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NbMenuService, NbSidebarService, NB_WINDOW } from '@nebular/theme';
+import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 

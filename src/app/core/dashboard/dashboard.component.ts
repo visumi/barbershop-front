@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
   emptySchedule = true; // Controla se há reservas no dia
   finishSaleButton = true; // Controla o botão de Finalizar
   cartCardSpinner = false; // Controla o spinner do carrinho
+  finishSpinner = false; // Spinner do botao de Finalizar
 
   // Form
   newBooking: FormGroup; // Cria o form de Nova Reserva
@@ -307,6 +308,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public finishSale(): void { // Finaliza a venda
+    this.finishSpinner = true;
     const products = [];
     const services = [];
 
@@ -332,10 +334,12 @@ export class DashboardComponent implements OnInit {
     };
 
     this.dashboardService.addSale(finalObject).subscribe(
-      (res) => {
-        console.log(res);
-      }, (error) => {
-        console.log(error);
+      () => {
+        this.finishSpinner = false;
+        this.showToast('Venda criada', 'Sucesso', 'success');
+      }, () => {
+        this.finishSpinner = false;
+        this.showToast('Problema ao criar venda', 'Erro', 'danger');
       }
     );
 

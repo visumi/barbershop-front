@@ -17,13 +17,13 @@
                 </a>
             </div>
             <div class="col-12">
-                <a href="#" (click)="toggle()" class="bar-icons">
-                    <nb-icon nbPrefix icon="calendar" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Teste 1</p>
+                <a routerLink="dashboard" class="bar-icons">
+                    <nb-icon nbPrefix icon="clipboard" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Dashboard</p>
                 </a>
             </div>
             <div class="col-12">
-                <a href="#" (click)="toggle()" class="bar-icons">
-                    <nb-icon nbPrefix icon="alert-circle" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Teste 2</p>
+                <a routerLink="clients" class="bar-icons">
+                    <nb-icon nbPrefix icon="person" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Clientes</p>
                 </a>
             </div>
         </div>
