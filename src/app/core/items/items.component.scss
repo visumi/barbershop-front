@@ -2,16 +2,16 @@
     background-color: #5b658c;
 }
 
-.table-client {
-    background-color: white;
-}
-
 .card-header-bg {
     background-color: #0e1424;
 }
 
 .titulo {
     font-family: 'Roboto', sans-serif;
+}
+
+.table-client {
+    background-color: white;
 }
 
 .linha:hover {
@@ -26,16 +26,21 @@ tr {
 }
     
 table{
-    height:575px;              
+    height:642px;              
     display: -moz-groupbox;    
 }
 tbody{
     overflow-y: auto;      
-    height: 528px;            
+    height: 600px;            
     width: 100%;
     position: absolute;
 }
 
-.trash-icon:hover {
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+  .trash-icon:hover {
     color: #bd2020;
 }

@@ -1,0 +1,168 @@
+<div class="row">
+    <div class="col-6">
+        <nb-card class="rounded-2 myCard">
+            <nb-card-header class="titulo text-center card-header-bg">
+                <h5>Produtos</h5>
+            </nb-card-header>
+            <nb-card-body class="container-fluid">
+                <div class="row">
+                    <div class="col-4">
+                        <nb-card>
+                            <nb-card-header class="text-center card-header-bg">
+                                <h6 class="titulo">Inserir Produto<nb-icon class="ml-1" nbSuffix icon="plus" pack="eva"></nb-icon></h6>
+                            </nb-card-header>
+                            <nb-card-body>
+                                <form [formGroup]="addProductForm" (ngSubmit)="addProduct(addProductForm.value)">
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="shopping-bag" pack="eva"></nb-icon>
+                                        <input type="text" fullWidth nbInput formControlName="name" placeholder="Nome">
+                                    </nb-form-field>
+                                    <br>
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="pricetags" pack="eva"></nb-icon>
+                                        <input type="number" fullWidth nbInput formControlName="price" placeholder="Preço">
+                                    </nb-form-field>
+                                    <br>
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="cube" pack="eva"></nb-icon>
+                                        <input type="number" maxlength="11" fullWidth nbInput formControlName="stockQuantity" placeholder="Quantidade">
+                                    </nb-form-field>
+                                    <button class="mt-3" [disabled]="!addProductForm.valid" nbButton fullWidth hero status="success" type="submit">Enviar</button>
+                                </form>
+                            </nb-card-body>
+                        </nb-card>
+                        <nb-card>
+                            <nb-card-header class="text-center card-header-bg">
+                                <h6 class="titulo">Editar Produto<nb-icon class="ml-1" nbSuffix icon="edit-2" pack="eva"></nb-icon></h6>
+                            </nb-card-header>
+                            <nb-card-body>
+                                <form [formGroup]="editProductForm" (ngSubmit)="editProduct(editProductForm.value)">
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="shopping-bag" pack="eva"></nb-icon>
+                                        <input type="text" fullWidth nbInput formControlName="name" placeholder="Nome">
+                                    </nb-form-field>
+                                    <br>
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="pricetags" pack="eva"></nb-icon>
+                                        <input type="number" fullWidth nbInput formControlName="price" placeholder="Preço">
+                                    </nb-form-field>
+                                    <br>
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="cube" pack="eva"></nb-icon>
+                                        <input type="number" maxlength="11" fullWidth nbInput formControlName="stockQuantity" placeholder="Quantidade">
+                                    </nb-form-field>
+                                    <button class="mt-3" [disabled]="!editProductForm.valid" nbButton fullWidth hero status="success" type="submit">Enviar</button>
+                                </form>
+                            </nb-card-body>
+                        </nb-card>
+                    </div>
+                    <div class="col-8">
+                        <nb-card class="mh-25">
+                            <nb-card-body class='p-0 overflow-hidden'>
+                                <table class="table table-client m-0 table-striped" [nbSpinner]="tableSpinner">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Preço</th>
+                                        <th scope="col">Quantidade</th>
+                                        <th scope="col">Excluir</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr class="linha" *ngFor="let product of products; index as i" (click)="selectProduct(product)">
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{product.name}}</td>
+                                        <td>{{product.price | currency:'BRL'}}</td>
+                                        <td>{{product.stockQuantity}}</td>
+                                        <td (click)="deleteProduct(product)"><nb-icon class="ml-4 trash-icon" nbPrefix icon="trash-2" pack="eva"></nb-icon></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </nb-card-body>
+                        </nb-card>
+                   </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-6">
+        <nb-card class="rounded-2 myCard">
+            <nb-card-header class="titulo text-center card-header-bg">
+                <h5>Serviços</h5>
+            </nb-card-header>
+            <nb-card-body class="container-fluid">
+                <div class="row">
+                    <div class="col-4">
+                        <nb-card>
+                            <nb-card-header class="text-center card-header-bg">
+                                <h6 class="titulo">Inserir Serviço<nb-icon class="ml-1" nbSuffix icon="plus" pack="eva"></nb-icon></h6>
+                            </nb-card-header>
+                            <nb-card-body>
+                                <form [formGroup]="addServiceForm" (ngSubmit)="addService(addServiceForm.value)">
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="scissors" pack="eva"></nb-icon>
+                                        <input type="text" fullWidth nbInput formControlName="name" placeholder="Nome">
+                                    </nb-form-field>
+                                    <br>
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="pricetags" pack="eva"></nb-icon>
+                                        <input type="number" fullWidth nbInput formControlName="price" placeholder="Preço">
+                                    </nb-form-field>
+                                    <br><br><br>
+                                    <button class="mt-3" [disabled]="!addServiceForm.valid" nbButton fullWidth hero status="success" type="submit">Enviar</button>
+                                </form>
+                            </nb-card-body>
+                        </nb-card>
+                        <nb-card>
+                            <nb-card-header class="text-center card-header-bg">
+                                <h6 class="titulo">Editar Serviço<nb-icon class="ml-1" nbSuffix icon="edit-2" pack="eva"></nb-icon></h6>
+                            </nb-card-header>
+                            <nb-card-body>
+                                <form [formGroup]="editServiceForm" (ngSubmit)="editService(editServiceForm.value)">
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="scissors" pack="eva"></nb-icon>
+                                        <input type="text" fullWidth nbInput formControlName="name" placeholder="Nome">
+                                    </nb-form-field>
+                                    <br>
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="pricetags" pack="eva"></nb-icon>
+                                        <input type="number" fullWidth nbInput formControlName="price" placeholder="Preço">
+                                    </nb-form-field>
+                                    <br><br><br>
+                                    <button class="mt-3" [disabled]="!editServiceForm.valid" nbButton fullWidth hero status="success" type="submit">Enviar</button>
+                                </form>
+                            </nb-card-body>
+                        </nb-card>
+                    </div>
+                    <div class="col-8">
+                        <nb-card class="mh-25">
+                            <nb-card-body class='p-0 overflow-hidden'>
+                                <table class="table table-client m-0 table-striped" [nbSpinner]="tableServiceSpinner">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Preço</th>
+                                        <th scope="col">Excluir</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr class="linha" *ngFor="let service of services; index as i" (click)="selectService(service)">
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{service.name}}</td>
+                                        <td>{{service.price | currency:'BRL'}}</td>
+                                        <td (click)="deleteService(service)"><nb-icon class="ml-4 trash-icon" nbPrefix icon="trash-2" pack="eva"></nb-icon></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </nb-card-body>
+                        </nb-card>
+                   </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+
+

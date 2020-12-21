@@ -8,6 +8,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { LoginComponent } from './core/login/login.component';
 import { RegisterComponent } from './core/register/register.component';
 import { ClientsComponent } from './core/clients/clients.component';
+import { ItemsComponent } from './core/items/items.component';
 
 const homeRoute = '/dashboard';
 
@@ -28,7 +29,8 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'clients', component: ClientsComponent }
+      { path: 'clients', component: ClientsComponent },
+      { path: 'items', component: ItemsComponent}
     ]
   }
 ];

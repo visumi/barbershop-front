@@ -328,14 +328,26 @@ export class DashboardComponent implements OnInit {
       idBarberShop: this.guid,
       idSchedule: this.selectedBook.id,
       totalPrice: this.totalPrice,
-      products: products,
-      services: services
+      products,
+      services
     };
 
     this.dashboardService.addSale(finalObject).subscribe(
       () => {
+        this.deleteSchedule();
         this.finishSpinner = false;
         this.showToast('Venda criada', 'Sucesso', 'success');
+        this.loadSchedules(this.loadSchedulesDate);
+        this.selectedBook = {
+          client: '',
+          id: '',
+          scheduledAt: '',
+          time: '',
+          service: '',
+          idService: ''
+        };
+        this.cart = [];
+        this.totalPrice = 0;
       }, () => {
         this.finishSpinner = false;
         this.showToast('Problema ao criar venda', 'Erro', 'danger');

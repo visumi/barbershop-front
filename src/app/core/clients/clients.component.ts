@@ -70,9 +70,7 @@ export class ClientsComponent implements OnInit {
 
   public selectClient(client): void {
     this.selectedClient = client;
-    this.editForm.get('name').enable();
-    this.editForm.get('nickname').enable();
-    this.editForm.get('phoneNumber').enable();
+    this.editForm.enable();
     this.editForm.patchValue({
       name: client.name,
       nickname: client.nickname,
@@ -124,6 +122,7 @@ export class ClientsComponent implements OnInit {
         this.loadClients();
         this.showToast('Cliente removido', 'Sucesso', 'success');
         this.editForm.reset();
+        this.editForm.disable();
       }, () => {
         this.showToast('Problema ao remover cliente', 'Erro', 'danger');
       }

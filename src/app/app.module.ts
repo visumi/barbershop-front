@@ -18,6 +18,8 @@ import { ChangeComponent } from './core/change/change.component';
 import { ChangeFormComponent } from './core/change/change-form/change-form.component';
 import { ProductModalComponent } from './core/dashboard/product-modal/product-modal.component';
 import { ClientsComponent } from './core/clients/clients.component';
+import { ItemsComponent } from './core/items/items.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { ClientsComponent } from './core/clients/clients.component';
     ChangeComponent,
     ChangeFormComponent,
     ProductModalComponent,
-    ClientsComponent
+    ClientsComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { ClientsComponent } from './core/clients/clients.component';
     NbMenuModule.forRoot(),
     NbToastrModule.forRoot(),
     NbWindowModule.forRoot(),
-    NbEvaIconsModule
+    NbEvaIconsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
