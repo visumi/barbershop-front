@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  showToast(message, title, status): void { // Exibe o Toastr
+  private showToast(message, title, status): void { // Exibe o Toastr
     this.toastrService.show(message, title, { status, icon: 'bulb', iconPack: 'eva' });
   }
 
@@ -205,7 +205,6 @@ export class DashboardComponent implements OnInit {
   }
 
   public selectBook(book): void { // Modifica qual a Reserva está selecionada no momento
-    this.cartCardSpinner = true;
     this.cart = [];
     this.totalPrice = 0;
     this.deleteButton = false;

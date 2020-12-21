@@ -1,0 +1,37 @@
+.myCard {
+    background-color: #5b658c;
+}
+
+.table-client {
+    background-color: white;
+}
+
+.card-header-bg {
+    background-color: #0e1424;
+}
+
+.titulo {
+    font-family: 'Roboto', sans-serif;
+}
+
+.linha:hover {
+    background-color: #fff8e3;
+    cursor: pointer;
+}
+
+tr {
+    width: 100%;
+    display: inline-table;
+    table-layout: fixed;
+    }
+    
+    table{
+     height:575px;              
+     display: -moz-groupbox;    
+    }
+    tbody{
+      overflow-y: scroll;      
+      height: 528px;            
+      width: 100%;
+      position: absolute;
+    }

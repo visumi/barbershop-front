@@ -34,8 +34,20 @@ export class DashboardService {
      + guid + '/' + id, { headers: header });
   }
 
+  addClient(body: {}): Observable<object> {
+    return this.http.post('https://barbermanagement-api.azurewebsites.net/api/v1/client/', body, { headers: header });
+  }
+
   getClients(guid): Observable<object> {
     return this.http.get('https://barbermanagement-api.azurewebsites.net/api/v1/client/' + guid, { headers: header });
+  }
+
+  deleteClient(guid, id): Observable<object> {
+    return this.http.delete('https://barbermanagement-api.azurewebsites.net/api/v1/client/' + guid + '/' + id, { headers: header });
+  }
+
+  editClient(body: {}): Observable<object> {
+    return this.http.put('https://barbermanagement-api.azurewebsites.net/api/v1/client/', body, { headers: header});
   }
 
   getProducts(guid): Observable<object> {

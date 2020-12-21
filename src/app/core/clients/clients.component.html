@@ -3,21 +3,80 @@
        <div class="row">
            <div class="col-4">
                 <nb-card>
-                    <nb-card-header>
-                        TESTE
+                    <nb-card-header class="card-header-bg text-center">
+                        <h6 class="titulo">Novo Cliente</h6>
                     </nb-card-header>
-                    <nb-card-body>
-                        DJAKWOIDHAIOUWHJDAKJIWHDKALJHWD
+                    <nb-card-body class="overflow-hidden">
+                        <form [formGroup]="addForm" (ngSubmit)="addClient(addForm.value)">
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
+                                <input type="text" fullWidth nbInput formControlName="name" placeholder="Nome">
+                            </nb-form-field>
+                            <br>
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="people" pack="eva"></nb-icon>
+                                <input type="text" fullWidth nbInput formControlName="nickname" placeholder="Apelido">
+                            </nb-form-field>
+                            <br>
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="phone" pack="eva"></nb-icon>
+                                <input type="text" maxlength="11" fullWidth nbInput formControlName="phoneNumber" placeholder="Telefone">
+                            </nb-form-field>
+                            <button class="mt-3" [disabled]="!addForm.valid" nbButton fullWidth hero status="success" type="submit">Enviar</button>
+                        </form>
                     </nb-card-body>
                 </nb-card>
+                    <nb-card>
+                        <nb-card-header class="card-header-bg text-center">
+                            <h6 class="titulo">Editar Cliente</h6>
+                        </nb-card-header>
+                        <nb-card-body class="overflow-hidden">
+                            <form [formGroup]="editForm" (ngSubmit)="editClient(editForm.value)">
+                                <nb-form-field>
+                                    <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
+                                    <input type="text" fullWidth nbInput formControlName="name" placeholder="Nome">
+                                </nb-form-field>
+                                <br>
+                                <nb-form-field>
+                                    <nb-icon nbPrefix icon="people" pack="eva"></nb-icon>
+                                    <input type="text" fullWidth nbInput formControlName="nickname" placeholder="Apelido">
+                                </nb-form-field>
+                                <br>
+                                <nb-form-field>
+                                    <nb-icon nbPrefix icon="phone" pack="eva"></nb-icon>
+                                    <input type="text" maxlength="11" fullWidth nbInput formControlName="phoneNumber" placeholder="Telefone">
+                                </nb-form-field>
+                                <button class="mt-3" [disabled]="!editForm.valid" nbButton fullWidth hero status="success" type="submit">Enviar</button>
+                            </form>
+                        </nb-card-body>
+                    </nb-card>
            </div>
            <div class="col-8">
-            <nb-card>
-                <nb-card-header>
-                    TESTE
+            <nb-card class="mh-25">
+                <nb-card-header class="card-header-bg text-center">
+                    <h5 class="titulo">Clientes</h5>
                 </nb-card-header>
-                <nb-card-body>
-                    DJAKWOIDHAIOUWHJDAKJIWHDKALJHWD
+                <nb-card-body class='p-0'>
+                    <table class="table table-client m-0 table-striped" [nbSpinner]="tableSpinner">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Apelido</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">Excluir</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="linha" *ngFor="let client of clients; index as i" (click)="selectClient(client)">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{client.name}}</td>
+                            <td>{{client.nickname}}</td>
+                            <td>{{client.phoneNumber}}</td>
+                            <td (click)="deleteClient(client)"><nb-icon class="ml-4" nbPrefix icon="trash-2" pack="eva"></nb-icon></td>
+                          </tr>
+                        </tbody>
+                      </table>
                 </nb-card-body>
             </nb-card>
        </div>
