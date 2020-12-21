@@ -18,6 +18,7 @@ export class ItemsComponent implements OnInit {
   addServiceForm: FormGroup;
   editServiceForm: FormGroup;
   disableEditForm = true;
+  disableEditFormService = true;
   tableSpinner: boolean;
   tableServiceSpinner: boolean;
 
@@ -53,8 +54,8 @@ export class ItemsComponent implements OnInit {
       price: [{ value: '', disabled: false }, Validators.required]
     });
     this.editServiceForm = this.formBuilder.group({
-      name: [{ value: '', disabled: false }, Validators.required],
-      price: [{ value: '', disabled: false }, Validators.required]
+      name: [{ value: '', disabled: this.disableEditFormService }, Validators.required],
+      price: [{ value: '', disabled: this.disableEditFormService }, Validators.required]
     });
   }
 
