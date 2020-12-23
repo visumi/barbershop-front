@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   // type 1 = admin, type 2= manager, type 3 = employee
-
   userRole = 'None';
   userName = 'None';
   sideToggle = false;

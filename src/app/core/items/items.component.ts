@@ -80,6 +80,7 @@ export class ItemsComponent implements OnInit {
   }
 
   private loadService(): void {
+    this.tableServiceSpinner = true;
     const servicesAux = [];
     this.dashboardService.getServices(this.guid).subscribe(
       (res) => {
@@ -92,6 +93,7 @@ export class ItemsComponent implements OnInit {
             qty: 1
           });
         });
+        this.tableServiceSpinner = false;
       }, (error) => {
         console.log(error);
       }

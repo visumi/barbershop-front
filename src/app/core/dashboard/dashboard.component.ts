@@ -334,7 +334,6 @@ export class DashboardComponent implements OnInit {
 
     this.dashboardService.addSale(finalObject).subscribe(
       () => {
-        this.deleteSchedule();
         this.finishSpinner = false;
         this.showToast('Venda criada', 'Sucesso', 'success');
         this.loadSchedules(this.loadSchedulesDate);

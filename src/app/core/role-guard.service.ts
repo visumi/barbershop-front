@@ -4,17 +4,19 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService {
+export class RoleGuardService {
 
   constructor(private router: Router) { }
 
   canActivate(): boolean {
-    const Token = localStorage.getItem('Token');
-    if (Token) {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+    if (userInfo.Type === '1') {
       return true;
     } else {
-      this.router.navigate(['login']);
+      this.router.navigate(['dashboard']);
       return false;
     }
   }
+
 }

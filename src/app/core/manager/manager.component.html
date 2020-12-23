@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-3">
+        <nb-card class="white-card" [nbSpinner]="totalProdSpinner">
+            <nb-card-body class="d-flex justify-content-center align-items-center flex-column">
+                <span class="iconColor"><fa-icon [icon]="faBoxes"></fa-icon></span>
+                <p class="darker-text font-weight-bold">Produtos Cadastrados</p>
+                <h6 class="darker-text darker-numbers">{{totalProd}}</h6>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-3">
+        <nb-card class="white-card" [nbSpinner]="totalServicesSpinner">
+            <nb-card-body class="d-flex justify-content-center align-items-center flex-column">
+                <span class="iconColor"><fa-icon [icon]="faCut"></fa-icon></span>
+                <p class="darker-text font-weight-bold">Serviços Cadastrados</p>
+                <h6 class="darker-text darker-numbers">{{totalServices}}</h6>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-3">
+        <nb-card class="white-card" [nbSpinner]="totalClientsSpinner">
+            <nb-card-body class="d-flex justify-content-center align-items-center flex-column">
+                <span class="iconColor"><fa-icon [icon]="faUsers"></fa-icon></span>
+                <p class="darker-text font-weight-bold">Clientes Cadastrados</p>
+                <h6 class="darker-text darker-numbers">{{totalClients}}</h6>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-3">
+        <nb-card class="white-card" [nbSpinner]="totalValueSpinner">
+            <nb-card-body class="d-flex justify-content-center align-items-center flex-column">
+                <span class="iconColor"><fa-icon [icon]="faCoffee"></fa-icon></span>
+                <p class="darker-text font-weight-bold">Total de Vendas</p>
+                <h6 class="darker-text darker-numbers">{{totalValue | currency:'BRL'}}</h6>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-9">
+        <nb-card class="rounded-0 white-card">
+            <nb-card-body class='p-0 overflow-hidden'>
+                <table class="table table-client m-0 table-striped" [nbSpinner]="tableSpinner">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Visualizar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="linha" *ngFor="let sale of sales; index as i">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{sale.id}}</td>
+                        <td class="font-weight-bold">{{sale.totalPrice | currency:'BRL'}}</td>
+                        <td (click)="selectSale(sale)"><nb-icon class="ml-4 eye-icon" nbPrefix icon="eye" pack="eva"></nb-icon></td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-3">
+        <nb-card class="white-card">
+            <nb-card-header>
+                <h6 class="darker-text text-center">Informações Detalhadas</h6>
+            </nb-card-header>
+                <nb-card-body>
+                    <form [formGroup]="dataForm" >
+                        <nb-form-field>
+                            <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
+                            <input class="custom-input" type="text" fullWidth nbInput formControlName="client" placeholder="Nome">
+                        </nb-form-field>
+                        <br>
+                        <nb-form-field>
+                            <nb-icon nbPrefix icon="phone" pack="eva"></nb-icon>
+                            <input class="custom-input" type="text" fullWidth nbInput formControlName="phone" placeholder="Telefone">
+                        </nb-form-field>
+                    </form>
+                </nb-card-body>
+        </nb-card>
+        <nb-card class="inf-list">
+            <nb-card-header class="border-0">
+                <h6 class="darker-text text-center">Produtos</h6>
+            </nb-card-header>
+            <nb-list>
+              <nb-list-item *ngFor="let product of products">
+                <h6 class="darker-text">{{product}}</h6>
+              </nb-list-item>
+            </nb-list>
+          </nb-card>
+          <nb-card class="inf-list">
+            <nb-card-header class="border-0">
+                <h6 class="darker-text text-center">Serviços</h6>
+            </nb-card-header>
+            <nb-list>
+              <nb-list-item *ngFor="let service of services">
+                <h6 class="darker-text">{{service}}</h6>
+              </nb-list-item>
+            </nb-list>
+          </nb-card>
+    </div>
+</div>

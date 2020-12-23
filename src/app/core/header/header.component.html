@@ -18,7 +18,12 @@
             </div>
             <div class="col-12">
                 <a routerLink="dashboard" class="bar-icons">
-                    <nb-icon nbPrefix icon="clipboard" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Dashboard</p>
+                    <nb-icon nbPrefix icon="browser" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Dashboard</p>
+                </a>
+            </div>
+            <div *ngIf="userRole==='Gerente' || userRole==='Administrador'"class="col-12">
+                <a routerLink="manager" class="bar-icons">
+                    <nb-icon nbPrefix icon="clipboard" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Gerenciamento</p>
                 </a>
             </div>
             <div class="col-12">

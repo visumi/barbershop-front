@@ -20,6 +20,7 @@ import { ProductModalComponent } from './core/dashboard/product-modal/product-mo
 import { ClientsComponent } from './core/clients/clients.component';
 import { ItemsComponent } from './core/items/items.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ManagerComponent } from './core/manager/manager.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ChangeFormComponent,
     ProductModalComponent,
     ClientsComponent,
-    ItemsComponent
+    ItemsComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NbSpinnerModule,
     NbContextMenuModule,
     NbTreeGridModule,
+    FontAwesomeModule,
+    NbListModule,
     NbMenuModule.forRoot(),
     NbToastrModule.forRoot(),
     NbWindowModule.forRoot(),

@@ -35,4 +35,7 @@ export class ItemsService {
     return this.http.delete('https://barbermanagement-api.azurewebsites.net/api/v1/service/' + guid + '/' + id, { headers: header });
   }
 
+  getSales(guid): Observable<object> {
+    return this.http.get('https://barbermanagement-api.azurewebsites.net/api/v1/sale/' + guid, { headers: header });
+  }
 }

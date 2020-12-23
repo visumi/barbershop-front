@@ -1,0 +1,85 @@
+.myCard {
+    background-color: #5b658c;
+}
+
+.white-card {
+    background-color: #ededed;
+}
+
+.iconColor {
+    font-size: 28px;
+    color: #151a30;
+}
+
+.darker-text {
+    color: #151a30;
+    font-family: 'Roboto', sans-serif;
+}
+
+.darker-numbers {
+    font-size: x-large;
+}
+
+.titulo {
+    font-family: 'Roboto', sans-serif;
+}
+
+.table-client {
+    background-color: white;
+}
+
+.linha:hover {
+    background-color: #fff8e3;
+    cursor: pointer;
+}
+
+tr {
+    width: 100%;
+    display: inline-table;
+    table-layout: fixed;
+}
+    
+table{
+    height:642px;              
+    display: -moz-groupbox;    
+}
+tbody{
+    overflow-y: auto;      
+    height: 600px;            
+    width: 100%;
+    position: absolute;
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+  .eye-icon:hover {
+    color: rgb(23, 175, 23);
+}
+
+thead {
+    background-color: aliceblue;
+}
+
+nb-card-header {
+    background-color: aliceblue;
+    border-bottom: 0px;
+}
+
+.custom-input {
+    background-color: #ffffff!important;
+    border-color: #ffffff!important;
+    color: #151a30!important;
+}
+
+nb-list-item {
+    background-color: #ededed;
+    border-color: #ededed;
+    border-top: 0px!important;
+}
+
+.inf-list {
+    max-height: 198px;
+}
