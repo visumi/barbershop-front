@@ -21,6 +21,7 @@ import { ClientsComponent } from './core/clients/clients.component';
 import { ItemsComponent } from './core/items/items.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ManagerComponent } from './core/manager/manager.component';
+import { NewUserComponent } from './core/new-user/new-user.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ManagerComponent } from './core/manager/manager.component';
     ProductModalComponent,
     ClientsComponent,
     ItemsComponent,
-    ManagerComponent
+    ManagerComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,

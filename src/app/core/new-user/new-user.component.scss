@@ -1,0 +1,30 @@
+.titulo {
+    font-family: 'Roboto', sans-serif;
+}
+
+.user-row:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+
+nb-card-body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+nb-card-header {
+    background-color: #141a38;
+}
+
+.list-card {
+    height: 600px;
+}
+
+.eye-icon:hover {
+    color: rgb(0, 173, 0);
+    cursor: pointer;
+}
+
+.trash-icon:hover {
+    color: rgb(177, 0, 0);
+    cursor: pointer;
+}

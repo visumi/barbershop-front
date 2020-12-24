@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-4 text-center">
+        <nb-card>
+            <nb-card-header>
+                <h6>Novo Usuário</h6>
+            </nb-card-header>
+            <nb-card-body>
+
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-8">
+        <nb-card class="list-card">
+            <nb-card-header class="text-center">
+                <h6>Usuários</h6>
+                <small>Admin[1] / Manager[2] / Employee[3]</small>
+            </nb-card-header>
+            <nb-card-body class="p-0">
+                <div class="row py-3 px-2 user-row" *ngFor="let user of users">
+                    <div class="col-6">
+                        <h6 class="titulo font-weight-bold">{{user.name}} [{{user.type}}]</h6>
+                        <p class="titulo">User: {{user.username}}</p>
+                        <p class="titulo">E-mail: {{user.email}}</p>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <a><nb-icon class="mr-3 eye-icon" nbPrefix icon="eye" pack="eva"></nb-icon></a>
+                        <a><nb-icon class="trash-icon" nbPrefix icon="trash-2" pack="eva"></nb-icon></a>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
