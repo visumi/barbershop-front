@@ -1,21 +1,11 @@
 <div class="row">
-    <div class="col-4 text-center">
-        <nb-card>
-            <nb-card-header>
-                <h6>Novo Usuário</h6>
-            </nb-card-header>
-            <nb-card-body>
-
-            </nb-card-body>
-        </nb-card>
-    </div>
     <div class="col-8">
         <nb-card class="list-card">
             <nb-card-header class="text-center">
                 <h6>Usuários</h6>
-                <small>Admin[1] / Manager[2] / Employee[3]</small>
+                <small>Admin [1] / Manager [2] / Employee [3]</small>
             </nb-card-header>
-            <nb-card-body class="p-0">
+            <nb-card-body class="p-0" [nbSpinner]="userSpinner">
                 <div class="row py-3 px-2 user-row" *ngFor="let user of users">
                     <div class="col-6">
                         <h6 class="titulo font-weight-bold">{{user.name}} [{{user.type}}]</h6>
@@ -23,10 +13,76 @@
                         <p class="titulo">E-mail: {{user.email}}</p>
                     </div>
                     <div class="col-6 d-flex justify-content-end">
-                        <a><nb-icon class="mr-3 eye-icon" nbPrefix icon="eye" pack="eva"></nb-icon></a>
-                        <a><nb-icon class="trash-icon" nbPrefix icon="trash-2" pack="eva"></nb-icon></a>
+                        <a (click)="selectUser(user)"><nb-icon class="mr-3 eye-icon" nbPrefix icon="eye" pack="eva"></nb-icon></a>
+                        <a (click)="deleteUser(user)"><nb-icon class="trash-icon" nbPrefix icon="trash-2" pack="eva"></nb-icon></a>
                     </div>
                 </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-4 text-center">
+        <nb-card>
+            <nb-card-header>
+                <h6>Novo Usuário</h6>
+            </nb-card-header>
+            <nb-card-body>
+                <form [formGroup]="newUserForm" (ngSubmit)="addUser(newUserForm.value)">
+                    <nb-form-field>
+                        <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
+                        <input type="text" fullWidth nbInput formControlName="name" placeholder="Nome">
+                    </nb-form-field>
+                    <br>
+                    <nb-form-field>
+                        <nb-icon nbPrefix icon="people" pack="eva"></nb-icon>
+                        <input type="text" fullWidth nbInput formControlName="username" placeholder="Usuário">
+                    </nb-form-field>
+                    <br>
+                    <nb-form-field>
+                        <nb-icon nbPrefix icon="email" pack="eva"></nb-icon>
+                        <input type="email" email="true" fullWidth nbInput formControlName="email" placeholder="E-mail">
+                    </nb-form-field>
+                    <br>
+                    <nb-form-field>
+                        <nb-select  formControlName="type" fullWidth placeholder="Função">
+                            <nb-option value="3">Funcionário</nb-option>
+                            <nb-option value="2">Gerente</nb-option>
+                            <nb-option value="1">Administrador</nb-option>
+                          </nb-select>
+                    </nb-form-field>
+                    <button class="mt-3" [disabled]="!newUserForm.valid" nbButton fullWidth hero status="success" type="submit">Enviar</button>
+                </form>
+            </nb-card-body>
+        </nb-card>
+        <nb-card>
+            <nb-card-header>
+                <h6>Editar Usuário</h6>
+            </nb-card-header>
+            <nb-card-body>
+                <form [formGroup]="editUserForm" (ngSubmit)="editUser(editUserForm.value)">
+                    <nb-form-field>
+                        <nb-icon nbPrefix icon="person" pack="eva"></nb-icon>
+                        <input type="text" fullWidth nbInput formControlName="name" placeholder="Nome">
+                    </nb-form-field>
+                    <br>
+                    <nb-form-field>
+                        <nb-icon nbPrefix icon="people" pack="eva"></nb-icon>
+                        <input type="text" fullWidth nbInput formControlName="username" placeholder="Usuário">
+                    </nb-form-field>
+                    <br>
+                    <nb-form-field>
+                        <nb-icon nbPrefix icon="email" pack="eva"></nb-icon>
+                        <input type="email" email="true" fullWidth nbInput formControlName="email" placeholder="E-mail">
+                    </nb-form-field>
+                    <br>
+                    <nb-form-field>
+                        <nb-select  formControlName="type" fullWidth [placeholder]="role">
+                            <nb-option value="3">Funcionário</nb-option>
+                            <nb-option value="2">Gerente</nb-option>
+                            <nb-option value="1">Administrador</nb-option>
+                          </nb-select>
+                    </nb-form-field>
+                    <button class="mt-3" [disabled]="!editUserForm.valid" nbButton fullWidth hero status="success" type="submit">Enviar</button>
+                </form>
             </nb-card-body>
         </nb-card>
     </div>
