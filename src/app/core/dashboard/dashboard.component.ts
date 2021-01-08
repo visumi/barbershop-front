@@ -62,6 +62,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(localStorage.getItem('Token'));
     // Carrega os arrays
     this.getClients();
     this.getServices();
