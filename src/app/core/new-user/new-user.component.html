@@ -13,7 +13,7 @@
                         <p class="titulo">E-mail: {{user.email}}</p>
                     </div>
                     <div class="col-6 d-flex justify-content-end">
-                        <a (click)="selectUser(user)"><nb-icon class="mr-3 eye-icon" nbPrefix icon="eye" pack="eva"></nb-icon></a>
+                        <a *ngIf="(user.type == 1 && userInfo.Type == 1) || (user.type != 1)" (click)="selectUser(user)"><nb-icon class="mr-3 eye-icon" nbPrefix icon="eye" pack="eva"></nb-icon></a>
                         <a (click)="deleteUser(user)"><nb-icon class="trash-icon" nbPrefix icon="trash-2" pack="eva"></nb-icon></a>
                     </div>
                 </div>

@@ -113,6 +113,7 @@ export class ItemsComponent implements OnInit {
       () => {
         this.loadProducts();
         this.showToast('Produto adicionado', 'Sucesso', 'success');
+        this.addProductForm.reset();
         this.tableSpinner = false;
       }, () => {
         this.tableSpinner = false;
@@ -133,6 +134,7 @@ export class ItemsComponent implements OnInit {
       () => {
         this.loadService();
         this.showToast('Serviço adicionado', 'Sucesso', 'success');
+        this.addServiceForm.reset();
         this.tableServiceSpinner = false;
       }, () => {
         this.tableServiceSpinner = false;
@@ -174,6 +176,7 @@ export class ItemsComponent implements OnInit {
       () => {
         this.loadProducts();
         this.showToast('Produto alterado', 'Sucesso', 'success');
+        this.editProductForm.reset();
         this.tableSpinner = false;
       }, () => {
         this.tableSpinner = false;
@@ -195,6 +198,7 @@ export class ItemsComponent implements OnInit {
       () => {
         this.loadService();
         this.showToast('Serviço alterado', 'Sucesso', 'success');
+        this.editServiceForm.reset();
         this.tableServiceSpinner = false;
       }, () => {
         this.tableServiceSpinner = false;

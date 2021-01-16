@@ -20,7 +20,7 @@
                             <br>
                             <nb-form-field>
                                 <nb-icon nbPrefix icon="phone" pack="eva"></nb-icon>
-                                <input type="text" maxlength="11" fullWidth nbInput formControlName="phoneNumber" placeholder="Telefone">
+                                <input type="number" maxlength="11" fullWidth nbInput formControlName="phoneNumber" placeholder="Telefone">
                             </nb-form-field>
                             <button class="mt-3" [disabled]="!addForm.valid" nbButton fullWidth hero status="success" type="submit">Enviar</button>
                         </form>
@@ -44,7 +44,7 @@
                                 <br>
                                 <nb-form-field>
                                     <nb-icon nbPrefix icon="phone" pack="eva"></nb-icon>
-                                    <input type="text" maxlength="11" fullWidth nbInput formControlName="phoneNumber" placeholder="Telefone">
+                                    <input type="number" maxlength="11" fullWidth nbInput formControlName="phoneNumber" placeholder="Telefone">
                                 </nb-form-field>
                                 <button class="mt-3" [disabled]="!editForm.valid" nbButton fullWidth hero status="success" type="submit">Enviar</button>
                             </form>

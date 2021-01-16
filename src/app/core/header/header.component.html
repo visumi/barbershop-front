@@ -26,17 +26,17 @@
                     <nb-icon nbPrefix icon="clipboard" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Gerenciamento</p>
                 </a>
             </div>
-            <div *ngIf="userRole==='Gerente' || userRole==='Administrador'" class="col-12">
+            <div class="col-12">
                 <a routerLink="clients" class="bar-icons">
                     <nb-icon nbPrefix icon="person" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Clientes</p>
                 </a>
             </div>
-            <div *ngIf="userRole==='Gerente' || userRole==='Administrador'" class="col-12">
+            <div class="col-12">
                 <a routerLink="items" class="bar-icons">
                     <nb-icon nbPrefix icon="archive" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Produtos & Serviços</p>
                 </a>
             </div>
-            <div *ngIf="userRole==='Administrador'" class="col-12">
+            <div *ngIf="userRole==='Gerente' || userRole==='Administrador'"  class="col-12">
                 <a routerLink="access" class="bar-icons">
                     <nb-icon nbPrefix icon="shield" pack="eva" class="mt-5"></nb-icon><p *ngIf="sideToggle" class="ml-5 text-center d-inline sideFont bar-icons">Acessos</p>
                 </a>

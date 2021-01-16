@@ -33,8 +33,8 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'clients', component: ClientsComponent, canActivate: [RoleGuardService] },
-      { path: 'items', component: ItemsComponent, canActivate: [RoleGuardService]},
+      { path: 'clients', component: ClientsComponent },
+      { path: 'items', component: ItemsComponent},
       {
         path: 'manager',
         component: ManagerComponent,
@@ -43,7 +43,7 @@ const routes: Routes = [
       {
         path: 'access',
         component: NewUserComponent,
-        canActivate: [AdminGuardService]
+        canActivate: [RoleGuardService]
       }
     ]
   }

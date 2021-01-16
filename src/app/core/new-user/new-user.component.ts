@@ -19,6 +19,8 @@ export class NewUserComponent implements OnInit {
   editUserForm: FormGroup;
   userSpinner: boolean;
   role = 'Função';
+  userRole = 'None';
+  userInfo: any;
 
   constructor(
     private dashboardService: DashboardService,
@@ -28,7 +30,8 @@ export class NewUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
-
+    this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    console.log(this.userInfo);
     this.newUserForm = this.formBuilder.group({
       name: [{ value: '', disabled: false }, Validators.required],
       username: [{ value: '', disabled: false }, Validators.required],
@@ -90,6 +93,7 @@ export class NewUserComponent implements OnInit {
     this.dashboardService.addUser(data).subscribe(
       () => {
         this.showToast('Usuário adicionado', 'Sucesso', 'success');
+        this.newUserForm.reset();
         this.loadUsers();
       }, () => {
         this.showToast('Problema ao adicionar', 'Erro', 'danger');
@@ -104,6 +108,7 @@ export class NewUserComponent implements OnInit {
     this.dashboardService.editUser(data).subscribe(
       () => {
         this.showToast('Usuário alterado', 'Sucesso', 'success');
+        this.editUserForm.reset();
         this.loadUsers();
       }, () => {
         this.showToast('Problema ao atualizar', 'Erro', 'danger');

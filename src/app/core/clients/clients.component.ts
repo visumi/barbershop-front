@@ -110,6 +110,7 @@ export class ClientsComponent implements OnInit {
       () => {
         this.loadClients();
         this.showToast('Cliente atualizado', 'Sucesso', 'success');
+        this.editForm.reset();
       }, () => {
         this.showToast('Problema ao atualizar cliente', 'Erro', 'danger');
       }

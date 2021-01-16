@@ -53,6 +53,7 @@ export class DashboardComponent implements OnInit {
       service: '',
       idService: ''
     };
+  toggleChecked: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -153,6 +154,9 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.deleteSchedule(this.guid, this.selectedBook.id).subscribe(
       () => {
         this.showToast('Reserva excluída', 'Sucesso', 'success');
+        this.deleteButton = true;
+        this.toggleChecked = false;
+        this.finishSaleButton = true;
         this.loadSchedules(this.loadSchedulesDate);
         this.selectedBook = {
           client: '',
@@ -230,7 +234,8 @@ export class DashboardComponent implements OnInit {
 
   public changeAvulso(): void { // Muda os dados da Reserva selecionada de acordo com o Toggle
     this.deleteButton = true;
-    this.avulsoToggle = !this.avulsoToggle;
+    this.toggleChecked = !this.toggleChecked;
+    this.avulsoToggle = this.toggleChecked ;
     const formatedDate = this.today.toISOString().split('T')[0];
     if (this.avulsoToggle === true) {
       this.selectedBook = { // Aqui a venda é avulsa, precisa pegar data e tempo do momento do toggle
@@ -303,7 +308,17 @@ export class DashboardComponent implements OnInit {
 
   public clearCart(): void { // Limpa o carrinho
     this.cart = [];
+    this.selectedBook = {
+      client: '',
+      id: '',
+      scheduledAt: '',
+      time: '',
+      service: '',
+      idService: ''
+    };
+    this.toggleChecked = false;
     this.finishSaleButton = true;
+    this.deleteButton = true;
     this.totalPrice = 0;
   }
 

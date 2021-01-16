@@ -73,7 +73,7 @@
                         </div>
                         <div class="row d-flex align-items-center">
                             <div class="col-6">
-                                <nb-toggle status ="success" labelPosition="end" (checkedChange)="changeAvulso()">Venda Avulsa</nb-toggle>
+                                <nb-toggle status="success" [checked]="toggleChecked" labelPosition="end" (checkedChange)="changeAvulso()">Venda Avulsa</nb-toggle>
                             </div>
                             <div class="col-6 d-flex align-items-end flex-column">
                                 <button nbButton hero size="small" status="danger" type="submit" [disabled]="deleteButton" (click)="deleteSchedule()">Excluir</button>
@@ -106,7 +106,7 @@
                                                     <h6 class="titulo d-inline font-weight-bold">{{item.name}} - </h6>
                                                     <h6 class="titulo d-inline font-weight-bold">{{item.price | currency: 'BRL'}}</h6>
                                                 </span>
-                                                <p class="py-2 my-auto mr-2 font-weight-bold">Qty: {{item.qty}}</p>
+                                                <p class="py-2 my-auto mr-2 font-weight-bold">Qtd: {{item.qty}}</p>
                                             </div>
                                         </div>
                                     </nb-card-body>
