@@ -201,6 +201,7 @@ export class DashboardComponent implements OnInit {
       () => {
         this.scheduleSpinner = false;
         this.showToast('Reserva criada', 'Sucesso', 'success');
+        this.newBooking.reset();
         this.loadSchedules(data.scheduledAt + 'T' + data.time + ':00.000Z');
       }, () => {
         this.scheduleSpinner = false;
